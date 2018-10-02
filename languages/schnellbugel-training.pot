@@ -1,0 +1,404 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TM WooCommerce Extra Product Options\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-02 10:22-0500\n"
+"PO-Revision-Date: 2015-06-16 06:19+0200\n"
+"Last-Translator: themecomplete <themecomplete@gmail.com>\n"
+"Language-Team: themecomplete <themecomplete@gmail.com>\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 2.1.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: backend/schnell-training-cpt.php:14
+msgctxt "Post Type General Name"
+msgid "Training Locations"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:15
+msgctxt "Post Type Singular Name"
+msgid "Training Location"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:16 backend/schnell-training-cpt.php:21
+msgid "Training Locations"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:17 backend/schnell-training-cpt.php:49
+msgid "Training Location"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:18 backend/schnell-training-cpt.php:85
+#: backend/schnell-training-cpt.php:152 backend/schnell-training-cpt.php:219
+msgid "Item Archives"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:19 backend/schnell-training-cpt.php:86
+#: backend/schnell-training-cpt.php:153 backend/schnell-training-cpt.php:220
+msgid "Item Attributes"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:20 backend/schnell-training-cpt.php:87
+#: backend/schnell-training-cpt.php:154 backend/schnell-training-cpt.php:221
+#: backend/schnell-training-tax.php:20
+msgid "Parent Item:"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:22 backend/schnell-training-cpt.php:89
+#: backend/schnell-training-cpt.php:156 backend/schnell-training-cpt.php:223
+#: backend/schnell-training-tax.php:22
+msgid "Add New Item"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:23 backend/schnell-training-cpt.php:90
+#: backend/schnell-training-cpt.php:157
+msgid "Add New"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:24 backend/schnell-training-cpt.php:91
+#: backend/schnell-training-cpt.php:158 backend/schnell-training-cpt.php:225
+msgid "New Item"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:25 backend/schnell-training-cpt.php:92
+#: backend/schnell-training-cpt.php:159 backend/schnell-training-cpt.php:226
+#: backend/schnell-training-tax.php:23
+msgid "Edit Item"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:26 backend/schnell-training-cpt.php:93
+#: backend/schnell-training-cpt.php:160 backend/schnell-training-cpt.php:227
+#: backend/schnell-training-tax.php:24
+msgid "Update Item"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:27 backend/schnell-training-cpt.php:94
+#: backend/schnell-training-cpt.php:161 backend/schnell-training-cpt.php:228
+#: backend/schnell-training-tax.php:25
+msgid "View Item"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:28 backend/schnell-training-cpt.php:95
+#: backend/schnell-training-cpt.php:162 backend/schnell-training-cpt.php:229
+msgid "View Items"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:29 backend/schnell-training-cpt.php:96
+#: backend/schnell-training-cpt.php:163 backend/schnell-training-cpt.php:230
+msgid "Search Item"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:30 backend/schnell-training-cpt.php:97
+#: backend/schnell-training-cpt.php:164 backend/schnell-training-cpt.php:231
+msgid "Not found"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:31 backend/schnell-training-cpt.php:98
+#: backend/schnell-training-cpt.php:165 backend/schnell-training-cpt.php:232
+msgid "Not found in Trash"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:32 backend/schnell-training-cpt.php:99
+#: backend/schnell-training-cpt.php:166 backend/schnell-training-cpt.php:233
+msgid "Featured Image"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:33 backend/schnell-training-cpt.php:100
+#: backend/schnell-training-cpt.php:167 backend/schnell-training-cpt.php:234
+msgid "Set featured image"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:34 backend/schnell-training-cpt.php:101
+#: backend/schnell-training-cpt.php:168 backend/schnell-training-cpt.php:235
+msgid "Remove featured image"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:35 backend/schnell-training-cpt.php:102
+#: backend/schnell-training-cpt.php:169 backend/schnell-training-cpt.php:236
+msgid "Use as featured image"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:36 backend/schnell-training-cpt.php:103
+#: backend/schnell-training-cpt.php:170 backend/schnell-training-cpt.php:237
+msgid "Insert into item"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:37 backend/schnell-training-cpt.php:104
+#: backend/schnell-training-cpt.php:171 backend/schnell-training-cpt.php:238
+msgid "Uploaded to this item"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:38 backend/schnell-training-cpt.php:105
+#: backend/schnell-training-cpt.php:172 backend/schnell-training-cpt.php:239
+#: backend/schnell-training-tax.php:33
+msgid "Items list"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:39 backend/schnell-training-cpt.php:106
+#: backend/schnell-training-cpt.php:173 backend/schnell-training-cpt.php:240
+#: backend/schnell-training-tax.php:34
+msgid "Items list navigation"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:40 backend/schnell-training-cpt.php:107
+#: backend/schnell-training-cpt.php:174 backend/schnell-training-cpt.php:241
+msgid "Filter items list"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:50
+msgid "These are the training locations"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:81
+msgctxt "Post Type General Name"
+msgid "Training Experts"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:82
+msgctxt "Post Type Singular Name"
+msgid "Training Expert"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:83 backend/schnell-training-cpt.php:88
+msgid "Training Experts"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:84 backend/schnell-training-cpt.php:116
+msgid "Training Expert"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:117
+msgid "These are the training experts"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:148
+msgctxt "Post Type General Name"
+msgid "Training Modules"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:149
+msgctxt "Post Type Singular Name"
+msgid "Training Module"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:150 backend/schnell-training-cpt.php:155
+msgid "Training Modules"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:151 backend/schnell-training-cpt.php:183
+msgid "Training Module"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:184
+msgid "These are the training modules"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:215
+msgctxt "Post Type General Name"
+msgid "Schnellbugel Trainings"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:216
+msgctxt "Post Type Singular Name"
+msgid "Training"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:217 backend/schnell-training-cpt.php:218
+#: backend/schnell-training-cpt.php:250
+msgid "Training"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:222
+msgid "All Trainings"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:224
+msgid "Add New Training"
+msgstr ""
+
+#: backend/schnell-training-cpt.php:251
+msgid "These are the trainings"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-experts.php:15
+msgid "Expert Contact Information"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-experts.php:22
+#: backend/schnell-training-metaboxes-locations.php:22
+msgid "Address"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-experts.php:27
+#: backend/schnell-training-metaboxes-locations.php:294
+msgid "Phone"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-experts.php:32
+msgid "Email"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-experts.php:40
+msgid "Facebook"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-experts.php:45
+msgid "Twitter"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-experts.php:50
+msgid "LinkedIn"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-experts.php:55
+msgid "Xing"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-experts.php:60
+#: backend/schnell-training-metaboxes-locations.php:299
+msgid "Website"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-experts.php:68
+msgid "Expert PDF CV"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-experts.php:79
+msgid "Trainerprofile"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-experts.php:96
+msgid "Curriculum"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-experts.php:112
+msgid "Power and Humanity"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-experts.php:128
+msgid "Who are my customers"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-locations.php:15
+msgid "Location Information"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-locations.php:27
+msgid "City"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-locations.php:32
+msgid "Country"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-locations.php:284
+msgid "State or Province"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-locations.php:289
+msgid "Postal Code"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-locations.php:307
+msgid "Show Google Map"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-locations.php:313
+msgid "Show Google Map Link"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-trainings.php:15
+msgid "Additional Information"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-trainings.php:22
+msgid "Slogan"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-trainings.php:27
+msgid "Resume"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-trainings.php:37
+msgid "Information"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-trainings.php:44
+msgid "The Duration"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-trainings.php:49
+msgid "The Cost"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-trainings.php:55
+msgid "Additional text"
+msgstr ""
+
+#: backend/schnell-training-metaboxes-trainings.php:65
+msgid "Further Information"
+msgstr ""
+
+#: backend/schnell-training-tax.php:15
+msgctxt "Taxonomy General Name"
+msgid "Training Categories"
+msgstr ""
+
+#: backend/schnell-training-tax.php:16
+msgctxt "Taxonomy Singular Name"
+msgid "Training Category"
+msgstr ""
+
+#: backend/schnell-training-tax.php:17
+msgid "Training Categories"
+msgstr ""
+
+#: backend/schnell-training-tax.php:18
+msgid "All Training Categories"
+msgstr ""
+
+#: backend/schnell-training-tax.php:19
+msgid "Parent Item"
+msgstr ""
+
+#: backend/schnell-training-tax.php:21
+msgid "New Item Name"
+msgstr ""
+
+#: backend/schnell-training-tax.php:26
+msgid "Separate items with commas"
+msgstr ""
+
+#: backend/schnell-training-tax.php:27
+msgid "Add or remove items"
+msgstr ""
+
+#: backend/schnell-training-tax.php:28
+msgid "Choose from the most used"
+msgstr ""
+
+#: backend/schnell-training-tax.php:29
+msgid "Popular Items"
+msgstr ""
+
+#: backend/schnell-training-tax.php:30
+msgid "Search Items"
+msgstr ""
+
+#: backend/schnell-training-tax.php:31
+msgid "Not Found"
+msgstr ""
+
+#: backend/schnell-training-tax.php:32
+msgid "No items"
+msgstr ""
