@@ -32,6 +32,46 @@ function schn_force_template( $template )
 
     }
 
+    if( is_singular( 'schtra_training' ) || is_single( 'schtra_training' ) ) {
+        // Use Plugin template
+        $template = SCHNELL_PLUGIN_DIR
+            . 'frontend/templates/single-schtra_training.php';
+
+        // to override archive template
+        $active_template = TEMPLATEPATH;
+        if (is_child_theme()){
+            $active_template = STYLESHEETPATH;
+        }
+
+        $archive_file = scandir($active_template);
+        $found = array_search('single-schtra_training.php', $archive_file);
+
+        if ($found){
+            $template = $active_template . '/single-schtra_training.php';
+        }
+
+    }
+
+    if( is_singular( 'schtra_expert' ) || is_single( 'schtra_expert' ) ) {
+        // Use Plugin template
+        $template = SCHNELL_PLUGIN_DIR
+            . 'frontend/templates/single-schtra_expert.php';
+
+        // to override archive template
+        $active_template = TEMPLATEPATH;
+        if (is_child_theme()){
+            $active_template = STYLESHEETPATH;
+        }
+
+        $archive_file = scandir($active_template);
+        $found = array_search('single-schtra_expert.php', $archive_file);
+
+        if ($found){
+            $template = $active_template . '/single-schtra_expert.php';
+        }
+
+    }
+
     return $template;
 }
 add_filter( 'template_include', 'schn_force_template' );

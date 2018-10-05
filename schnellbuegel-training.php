@@ -45,5 +45,6 @@ require_once 'backend/schnell-training-metaboxes-events.php';
 
 /* FRONTEND DEPENDENCIESN */
 require_once 'frontend/schnell-divi-cpt-support.php';
+require_once 'frontend/schnell-show-posts-functions.php';
 
 

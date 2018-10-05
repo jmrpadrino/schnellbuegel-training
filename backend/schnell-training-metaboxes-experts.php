@@ -73,7 +73,7 @@ function schn_register_experts_meta_boxes( $meta_boxes ) {
             )
         )
     );
-    
+    /*
     $meta_boxes[] = array(
         'id'         => 'trainerprofile',
         'title'      => __('Trainerprofile', 'schnell'),
@@ -89,7 +89,7 @@ function schn_register_experts_meta_boxes( $meta_boxes ) {
             )
         )
     );
-
+    */
     
     $meta_boxes[] = array(
         'id'         => 'curriculum',
@@ -106,7 +106,7 @@ function schn_register_experts_meta_boxes( $meta_boxes ) {
             )
         )
     );
-    
+    /*
     $meta_boxes[] = array(
         'id'         => 'powerandhumanity',
         'title'      => __('Power and Humanity', 'schnell'),
@@ -138,6 +138,6 @@ function schn_register_experts_meta_boxes( $meta_boxes ) {
             )
         )
     );
-    
+    */
     return $meta_boxes;
 }
