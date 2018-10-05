@@ -6,7 +6,6 @@
     <div class="container">
         <div id="content-area" class="clearfix">
             <div class="events-content">
-                VIENE DEL PLUGIN
                 <?php if( have_posts() ){ $month = 0;?>
                 <div class="events-search">
                     <select name="tx_webxseminar_calendar[trainer]"><option value="">alle Trainer</option>

@@ -9,7 +9,7 @@ function schnell_set_order_on_archive( $query ){
 
     //  IF IS ARCHIVE VIEW FOR TRAINING EVENTS
     // if ( is_archive( 'schtra_events' ) ){
-    if ( is_archive( 'schnellbugel-training-events' ) ){
+    if ( $query->is_main_query() && $query->is_post_type_archive('schtra_events') ){
 
         $query->set('meta_key', 'schnell_startdate');
         $query->set('orderby', array ('meta_value_num' => 'DESC' ));
