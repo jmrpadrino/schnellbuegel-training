@@ -10,6 +10,23 @@
  * on theme or child theme file structure
  */
 
+add_action('wp_head', 'schn_styles_scripts');
+function schn_styles_scripts(){
+    if(
+        // fontawesome for events
+        is_archive('schtra_events')     ||
+        is_single('schtra_events')      ||
+        is_singular('schtra_events')    ||
+
+        // fontawesome for experts
+        is_archive('schtra_expert')     ||
+        is_single('schtra_expert')      ||
+        is_singular('schtra_expert')
+    ){
+        wp_enqueue_style('training-icons', 'https://use.fontawesome.com/releases/v5.3.1/css/all.css', null, null);
+    }
+}
+
 function schn_force_template( $template )
 {	
     if( is_archive( 'schtra_events' ) ) {
@@ -75,3 +92,9 @@ function schn_force_template( $template )
     return $template;
 }
 add_filter( 'template_include', 'schn_force_template' );
+
+function mostrar_arreglo($array){
+    echo '<pre>';
+    print_r($array);
+    echo '<pre>';
+}

@@ -6,28 +6,49 @@
     <div class="container">
         <div id="content-area" class="clearfix">
             <div class="events-content">
-                <?php if( have_posts() ){ $month = 0;?>
                 <div class="events-search">
-                    <select name="tx_webxseminar_calendar[trainer]"><option value="">alle Trainer</option>
-                        <option value="">MANFRED SCHNELLBÜGEL</option>
-                        <option value="">BIRGIT SCHULER</option>
-                        <option value="">FRANK NEGRETTI</option>
-                        <option value="">FRANK NEGRETTI</option>
-                        <option value="">GABRIELE KURZ</option>
-                        <option value="">THOMAS KURZ</option>
-                        <option value="">ANTJE KLIMEK</option>
-                    </select>
-                    <select name="tx_webxseminar_calendar[product]"><option value="">alle Seminare</option>
-                        <option value="">Mein Unternehmensaufbau als Coach!</option>
-                        <option value="">Reich beschenkt durch die Konflikte meines Lebens!</option>
-                        <option value="">Resilienz meets Innovation</option>
-                        <option value="">Team Coaching</option>
-                        <option value="">Wahrnehmende Pädagogik</option>
-                        <option value="">Wahrnehmende Pflege und Betreuung</option>
-                        <option value="">web-crossing Testseminar</option>
-                    </select>
-                    <input type="submit" value="Suchen »"/>
+                    <form id="events-filter" role="form">
+                        <?php
+                            $experts = get_posts( array( 'post_type' => 'schtra_expert' ) );
+                            //mostrar_arreglo($experts);
+                            if( $experts ){
+                        ?>
+                        <select name="trainer">
+                            <option value=""><?= _e('alle Trainer','schnell') ?></option>
+                            <?php
+                                foreach ( $experts as $expert ){
+
+                                    $selected = '';
+
+                                    ( isset ( $_GET['trainer'] ) && !empty ( $_GET['trainer'] ) && $_GET['trainer'] == $expert->ID ) ? $selected = 'selected' : '';
+
+                                    echo '<option value="' . $expert->ID . '" ' . $selected . '>' . $expert->post_title . '</option>';
+                                }
+                            ?>
+                        </select>
+                        <?php } ?>
+                        <?php
+                            $trainings = get_posts( array( 'post_type' => 'schtra_training' ) );
+                            if ( $trainings ){
+                        ?>
+                        <select name="training">
+                            <option value=""><?= _e('alle Seminare','schnell') ?></option>
+                            <?php
+                                foreach ( $trainings as $training ){
+
+                                    $selected = '';
+
+                                    ( isset ( $_GET['training'] ) && !empty ( $_GET['training'] ) && $_GET['training'] == $training->ID ) ? $selected = 'selected' : '';
+
+                                    echo '<option value="' . $training->ID . '" ' . $selected . '>' . $training->post_title . '</option>';
+                                }
+                            ?>
+                        </select>
+                        <?php } ?>
+                        <button type="submit"><?= _e('Suchen','schnell') ?> <i class="fas fa-angle-double-right"></i></button>
+                    </form>
                 </div>
+                <?php if( have_posts() ){ $month = 0;?>
                 <!-- objeto bucle principal -->
                 <?php while (have_posts() ){ the_post();?>
                 <div class="events-months-content">
@@ -62,7 +83,7 @@
                     <?php $month = $split_date[1]; ?>
                     <!-- objeto bucle posts -->
                     <div class="event-description">
-                        <div class="event-time"><?= str_replace('-', '.', $training_startdate) . ' - ' . str_replace('-', '.',  $training_enddate ) ?></div>
+                        <div class="event-time"><i class="far fa-calendar-alt"></i> <?= str_replace('-', '.', $training_startdate) . ' - ' . str_replace('-', '.',  $training_enddate ) ?></div>
                         <div class="event-detail">
                             <div class="event-name">
                                 <a href="<?= $training_permalink ?>" target="_blank"><?= $training_title ?></a>
@@ -78,15 +99,20 @@
                         </div>
                         <div class="event-button">
                             <?php if ( $training_pdf_file_url ) { ?>
-                            <a class="button btn-download" target="_blank" href="<?= $training_pdf_file_url ?>">PDF Download</a>
+                            <a class="button btn-download" target="_blank" href="<?= $training_pdf_file_url ?>"><i class="far fa-file-pdf"></i> PDF Download</a>
                             <?php } ?>
-                            <a class="button btn-detail" target="_blank" href="#">Anmeldung »</a>	
+                            <a class="button btn-detail" target="_blank" href="#"><?= _e('Anmeldung','schnell') ?> <i class="fas fa-angle-double-right"></i></a>
                         </div>
                     </div>
                     <!-- -->
                 </div>
-                <?php } // END WHILE ?>
-                <?php }else{ ?>
+                <?php } // END WHILE
+                    the_posts_pagination( array(
+                        'mid_size'  => 2,
+                        'prev_text' => __( 'Back', 'textdomain' ),
+                        'next_text' => __( 'Onward', 'textdomain' ),
+                    ) );
+                }else{ ?>
                 <div class="events-months-content">
                     <p><?= _e('There is no events published yet','schnell') ?></p>
                 </div>

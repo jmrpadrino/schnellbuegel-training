@@ -22,10 +22,10 @@
                         <a href="<?= get_post_meta( get_the_ID(), $prefix . 'pdf', true) ?>">Trainerprofil als PDF</a>
                     </div>
                     <ul class="expeten-social-links">
-                        <li><a href="<?= get_post_meta( get_the_ID(), $prefix . 'facebook', true) ?>" class="fa fa-facebook"><span>Facebook</span></a></li>
-                        <li><a href="<?= get_post_meta( get_the_ID(), $prefix . 'linkedin', true) ?>" class="fa fa-linkedin"><span>LinkedIn</span></a></li>
-                        <li><a href="<?= get_post_meta( get_the_ID(), $prefix . 'xing', true) ?>" class="schn-new-xing-icon fa fa-xing"><span>Xing</span></a></li>
-                        <li><a href="mailto:<?= get_post_meta( get_the_ID(), $prefix . 'mail', true) ?>" class="fa fa-envelope"><span>E-Mail-Adresse</span></a></li>
+                        <li><a href="<?= get_post_meta( get_the_ID(), $prefix . 'facebook', true) ?>"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="<?= get_post_meta( get_the_ID(), $prefix . 'linkedin', true) ?>"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="<?= get_post_meta( get_the_ID(), $prefix . 'xing', true) ?>"><i class="fab fa-xing"></i></a></li>
+                        <li><a href="mailto:<?= get_post_meta( get_the_ID(), $prefix . 'mail', true) ?>"><i class="far fa-envelope"></i></a></li>
                     </ul>
                 </div>
             </div>
