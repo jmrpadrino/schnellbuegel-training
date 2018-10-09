@@ -304,6 +304,25 @@ function schn_register_locations_meta_boxes( $meta_boxes ) {
                 'type'  => 'divider',
             ),
             array(
+                'id'   => 'google_address',
+                'name' => 'Address',
+                'type' => 'text',
+            ),
+            array(
+                'id'            => 'map',
+                'name'          => 'Location',
+                'type'          => 'map',
+
+                // Default location: 'latitude,longitude[,zoom]' (zoom is optional)
+                'std'           => '-6.233406,-35.049906,15',
+
+                // Address field ID
+                'address_field' => 'google_address',
+
+                // Google API key
+                'api_key'       => 'XXXXXXXXX',
+            ),
+            array(
                 'name'  => __('Show Google Map', 'schnell'),
                 'id'    => $prefix . 'show_gmap',
                 'type' => 'checkbox',

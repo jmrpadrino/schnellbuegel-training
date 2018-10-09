@@ -101,7 +101,7 @@
                             <?php if ( $training_pdf_file_url ) { ?>
                             <a class="button btn-download" target="_blank" href="<?= $training_pdf_file_url ?>"><i class="far fa-file-pdf"></i> PDF Download</a>
                             <?php } ?>
-                            <a class="button btn-detail" target="_blank" href="#"><?= _e('Anmeldung','schnell') ?> <i class="fas fa-angle-double-right"></i></a>
+                            <a class="button btn-detail" target="_blank" href="<?= the_permalink() ?>"><?= _e('Anmeldung','schnell') ?> <i class="fas fa-angle-double-right"></i></a>
                         </div>
                     </div>
                     <!-- -->
