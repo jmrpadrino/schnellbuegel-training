@@ -168,6 +168,10 @@ function schn_force_template( $template )
 }
 add_filter( 'template_include', 'schn_force_template' );
 
+add_action('pre_get_posts', function(){
+    flush_rewrite_rules();
+});
+
 function mostrar_arreglo($array){
     echo '<pre>';
     print_r($array);

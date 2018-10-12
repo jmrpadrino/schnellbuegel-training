@@ -90,7 +90,8 @@
 			<?php 
                 schnell_show_events_by_training( get_the_ID() ) 
             ?>    
-			<div class="training-related-event">
+			
+			<!--div class="training-related-event">
 				<div class="info-description">
 					<div class="description-detail">
 						<div class="related-event-date"><i class="fa fa-calendar-o" aria-hidden="true"></i>10.10.2018 - 27.03.2019</div>
@@ -103,21 +104,12 @@
 						<a href="#">Mehr Info / Anmelden</a>
 					</div>
 				</div>
-			</div>
-			<div class="training-related-event">
-				<div class="info-description">
-					<div class="description-detail">
-						<div class="related-event-date"><i class="fa fa-calendar-o" aria-hidden="true"></i>10.10.2018 - 27.03.2019</div>
-						<div class="related-event-address"><i class="fa fa-map-marker" aria-hidden="true"></i>Posthotel Hofherr, D-82549 Königsdorf</div>
-						<div class="related-event-trainer">
-						<i class="fa fa-user" aria-hidden="true"></i>Trainer: <a href="#">Birgit Schuler</a>
-						</div>
-					</div>
-					<div class="description-btn">
-						<a href="#">Mehr Info / Anmelden</a>
-					</div>
-				</div>
-			</div>
+			</div-->
+			<?php
+                /*
+                * GET FURTHER TRAININGS 
+                */
+            ?>
 			<div class="training-info more-courses">
 				<div class="info-title more-courses-title">WEITERFÜHRENDE AUSBILDUNGEN</div>
 				<div class="info-description more-courses-inf">
