@@ -105,6 +105,8 @@ function schnell_set_order_on_archive( $query ){
 }
 add_action('pre_get_posts', 'schnell_set_order_on_archive');
 
+
+
 function schnell_show_month($month_number){
     $months = array(
         1 => __('Januar','schnell'),
@@ -123,16 +125,26 @@ function schnell_show_month($month_number){
     return $months[$month_number];
 }
 
-add_shortcode('schnell-show-events', 'schnell_show_events_by_expert');
-function schnell_show_events_by_expert( $atts ){
+/*
+ * SHORTCODE TO SHOW LAST EVENTS OR EVENTS BY EXPERT
+ * SET ATTRIBUTE showboxtitle TO FALSE TO HIDE LIST TITLE
+ * SET ATTRIBUTO boxtitle TO CHANCE THE LIST TITLE TEXT
+ */
+
+add_shortcode('schnell-show-events', 'schnell_show_events');
+function schnell_show_events( $atts ){
 
     $prefix = 'schnell_';
 
     $a = shortcode_atts( array(
         'expert' => '',
+        'show-box-title' => "true",
+        'box-title' => esc_html('Bevorstehende Veranstaltungen', 'schnell'),
+        'posts-per-page' => 4,
+        'theme' => 'default'
     ), $atts );
 
-    $args = array( 'post_type' => 'schtra_events' );
+    $args = array( 'post_type' => 'schtra_events', 'posts_per_page' => $a['posts-per-page'] );
 
     if ( $a['expert'] != ''){
         $args = array(
@@ -143,16 +155,18 @@ function schnell_show_events_by_expert( $atts ){
                 )
             ),
             'post_type'         => 'schtra_events',
-            'posts_per_page'    => -1
+            'posts_per_page'    => $a['posts-per-page']
         );
     }
 
     $events = get_posts( $args );
 
     if ( $events ){
-        echo '<div class="shortcode-event-list-container">';
-        echo '<h3 class="shortcode-event-list-title">' . esc_html('Bevorstehende Expertenveranstaltungen', 'schnell') . '</h3>';
-        echo '<ul class="shortcode-event-list">';
+        $html .= '<div class="shortcode-event-list-container theme-' . $a['theme'] . '">';
+        if ($a['show-box-title'] == "true"){
+        $html .= '<h3 class="shortcode-event-list-title">' . $a['box-title'] . '</h3>';
+        }
+        $html .= '<ul class="shortcode-event-list">';
         foreach ( $events as $event ){
             $training_ID            = get_post_meta( $event->ID, $prefix . 'training', true );
             $training_title         = get_the_title( $training_ID );
@@ -165,22 +179,27 @@ function schnell_show_events_by_expert( $atts ){
             $location_address       = get_post_meta( $location_ID, $prefix . 'address', true);
             $location_city          = get_post_meta( $location_ID, $prefix . 'city', true);
 
-            echo '<li>';
-            echo '<a href="' . $training_permalink . '">';
-            echo '<h4>' . $training_title . '</h4>';
-            echo '</a>';
-            echo '<p>' . $training_startdate . '</p>';
-            echo '<p><strong>' . $location_name . '</strong></p>';
-            echo '<p>' . $location_address . '</p>';
-            echo '<p>' . $location_city . '</p>';
-            echo '<a class="" href="' . $training_permalink . '">' . esc_html('Weiterlesen', 'schnell') . ' <i class="fas fa-angle-double-right"></i></a>';
-            echo '</li>';
+            $html .= '<li>';
+            $html .= '<a href="' . $training_permalink . '" target="_blank">';
+            $html .= '<h4>' . $training_title . '</h4>';
+            $html .= '</a>';
+            $html .= '<p class="training-date"><i class="far fa-calendar-alt"></i> ' . $training_startdate . '</p>';
+            $html .= '<p><strong><i class="fas fa-map-marker"></i> ' . $location_name . '</strong></p>';
+            $html .= '<p>' . $location_address . '</p>';
+            $html .= '<p>' . $location_city . '</p>';
+            $html .= '<a class="shortcode-event-list-single-link" href="' . get_post_permalink( $event->ID ) . '" target="_blank">' . esc_html('Anmeldung', 'schnell') . ' <i class="fas fa-angle-double-right"></i></a>';
+            $html .= '</li>';
         }
-        echo '</ul>';
-        echo '</div>';
+        $html .= '</ul>';
+        $html .= '</div>';
     }
-
+    return $html;
 }
+
+
+/*
+ * SHORTCODE TO SHOW LAST EVENTS BY TRAINING
+ */
 
 function schnell_show_events_by_training( $training_id ){
 
@@ -266,3 +285,11 @@ function schnell_template_redirect_checkout( ){
         exit();
     }
 }
+
+function schnell_frontend_css_js(){
+    if( ! is_admin() ){
+        wp_enqueue_style( 'schnel-trainings-icons', 'https://use.fontawesome.com/releases/v5.4.1/css/all.css', false, NULL, 'all' );
+        wp_enqueue_style( 'schnel-trainings', SCHNELL_PLUGIN_URI . '/frontend/css/schnel-style.css', false, NULL, 'all' );
+    }
+}
+add_action('wp_enqueue_scripts', 'schnell_frontend_css_js');

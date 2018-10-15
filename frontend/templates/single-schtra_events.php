@@ -40,6 +40,7 @@
 		    </div>
 		    <?php } ?>
 		    <?php
+                if ( is_array($expert_profile) ){
                 $expert_profile = array_reverse($expert_profile, false);
                 $args = array(
                     'post_type' => 'schtra_expert',
@@ -47,6 +48,7 @@
                     'post__in' => $expert_profile
                 );
                 $experts = get_posts( $args );
+                }
                 if( $experts ){
             ?>
 		    <div class="single-event-trainer-placeholder">
