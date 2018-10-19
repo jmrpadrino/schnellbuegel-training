@@ -98,7 +98,7 @@
                                 <a href="<?= $training_permalink ?>" target="_blank"><?= $training_title ?></a>
                             </div>	 
                             <div class="event-trainer">
-                                mit <a href="<?= $expert_permalink ?>" target="_blank"><?= $expert_name ?></a>
+                                mit <?= $expert_name ?>
                             </div>
                             <div class="event-location">
                                 <div class="place"><?= $location_name ?></div>

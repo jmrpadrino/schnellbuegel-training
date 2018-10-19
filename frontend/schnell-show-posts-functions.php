@@ -289,6 +289,7 @@ function schnell_template_redirect_checkout( ){
 function schnell_frontend_css_js(){
     if( ! is_admin() ){
         wp_enqueue_style( 'schnel-trainings-icons', 'https://use.fontawesome.com/releases/v5.4.1/css/all.css', false, NULL, 'all' );
+        wp_enqueue_style( 'schnel-bootstrap', SCHNELL_PLUGIN_URI . '/frontend/css/bootstrap.css', false, NULL, 'all' );
         wp_enqueue_style( 'schnel-trainings', SCHNELL_PLUGIN_URI . '/frontend/css/schnel-style.css', false, NULL, 'all' );
     }
 }
