@@ -39,7 +39,7 @@
 ?>
 <div class="container single-event-container">
     <div class="row">
-        <div class="col-md-12 single-event-header-placeholder">
+        <div class="col-md-10 col-md-offset-1 single-event-header-placeholder">
             <h1><?= $training_title ?></h1>
             <?php do_action('schnell-luego-titulo') ?>
             <a href="#buchung"><?= _e('Direkt zur Buchung','schnell') ?></a>
@@ -47,10 +47,12 @@
     </div>
     <?php
         $modules = get_post_meta( get_the_ID(), 'modulegroup', false);
-        if( $modules ){ $i = 1; $training_locations = array();
+        if( $modules ){
+			$i = 1;
+			$expert_profile = $training_locations = array();
     ?>
     <div class="row">
-        <div class="col-xs-12 single-event-module-list-placeholder">
+        <div class="col-md-10 col-md-offset-1 single-event-module-list-placeholder">
             <ul class="single-event-module-list">
             <?php
                 foreach( $modules[0] as $module ){
@@ -63,16 +65,17 @@
                                 <div class="col-xs-10">
                                     <h3><?= get_the_title($module['schnell_moduleid']) ?></h3>
                                     <hr />
-                                    <p><?= get_the_title($module['schnell_moduleexpert']) ?></p>
-                                    <p><?= get_the_title($module['schnell_modulelocation']) ?></p>
-                                    <p><?= $module['schnell_moduledate'] ?></p>
+                                    <p><i class="far fa-user"></i> <?= get_the_title($module['schnell_moduleexpert']) ?></p>
+                                    <p><i class="fas fa-map-marker"></i> <?= get_the_title($module['schnell_modulelocation']) ?></p>
+                                    <p><i class="far fa-calendar-alt"></i> <?= str_replace('-','.',$module['schnell_moduledate']) ?></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </li>
             <?php
-                    $expert_profile[] = $module['schnell_moduleexpert'];
+					if (!in_array( $module['schnell_moduleexpert'], $expert_profile))
+                    	$expert_profile[] = $module['schnell_moduleexpert'];
                     $training_locations[] = $module['schnell_modulelocation'];
                     $i++;
                 }
@@ -81,6 +84,11 @@
         </div>
     </div>
     <?php } ?>
+    <?php
+
+		mostrar_arreglo($expert_profile);
+
+	?>
     <?php
         if ( is_array($expert_profile) ){
             $expert_profile = array_reverse($expert_profile, false);
@@ -114,40 +122,6 @@
 	<div class="container">
 		<div id="content-area" class="clearfix">
 
-            <?php
-                $modules = get_post_meta( get_the_ID(), 'modulegroup', false);
-                if( $modules ){ $i = 1; $training_locations = array();
-            ?>
-		    <div class="single-event-module-list-placeholder">
-
-		    </div>
-		    <?php } ?>
-		    <?php
-                if ( is_array($expert_profile) ){
-                    $expert_profile = array_reverse($expert_profile, false);
-                    $args = array(
-                        'post_type' => 'schtra_expert',
-                        'posts_per_page' => -1,
-                        'post__in' => $expert_profile
-                    );
-                    $experts = get_posts( $args );
-                }
-                if( $experts ){
-            ?>
-		    <div class="single-event-trainer-placeholder">
-                <h2><?= _e('Ihr Trainer', 'schnell')?></h2>
-                <?php foreach ( $experts as $expert ){ ?>
-		        <div class="single-event-trainer-features">
-		            <img src="<?= get_the_post_thumbnail_url($expert->ID) ?>" alt="<?= get_the_title($expert->ID) ?>">
-		            <h3><?= $expert->post_title ?></h3>
-		            <ul>
-		                <li><i class="fas fa-phone"></i> <?= get_post_meta( $expert->ID, $prefix . 'phone', true) ?></li>
-		                <li><i class="far fa-envelope"></i> <?= get_post_meta( $expert->ID, $prefix . 'mail', true) ?></li>
-		            </ul>
-		        </div>
-		        <?php } ?>
-		    </div>
-		    <?php } ?>
 		    <?php
                 if ( is_array($training_locations) ){
                     $training_locations = array_reverse($training_locations, false);

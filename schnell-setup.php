@@ -172,6 +172,87 @@ add_action('pre_get_posts', function(){
     flush_rewrite_rules();
 });
 
+
+/**
+* ADDING SETTING FIELD TO GOOGLE MAPS API KEY
+* ADDING WORDPRESS ADMIN NOTICE VALIDATION
+*/
+
+function schnell_option_markup(){
+	$markup = '';
+
+	$markup = '<p>It is mandatory, for the maps to be displayed, that you get a key from the Google Maps API. If you don\'t have one, you can get it by clicking <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">here</a>.</p>';
+
+	echo $markup;
+}
+function schnell_option_markup_field(){
+	$value = get_option( 'schnell_google_map_api_key', '' );
+	$markup = '';
+
+	$markup = sprintf(
+		'<input
+			type="%1$s"
+			id="%2$s"
+			name="%3$s"
+			value="%4$s"
+		/>',
+		'text',
+		'schnell_google_map_api_key',
+		'schnell_google_map_api_key',
+		$value
+	);
+
+	echo $markup;
+}
+function schnell_options(){
+	register_setting( 'general',
+		'schnell_google_map_api_key',
+		'esc_attr'
+	);
+	add_settings_section( 'schnell-options',
+		'Schnellbugel Plugin Google Map API key',
+		'schnell_option_markup',
+		'general'
+	);
+	add_settings_field( 'schnell_google_map_api_key',
+		'API key',
+		'schnell_option_markup_field',
+		'general',
+		'schnell-options',
+		array( 'label_for' => 'schnell_google_map_api_key' )
+	);
+}
+add_action('admin_init', 'schnell_options');
+
+
+function schnell_admin_notice__success() {
+	$value = get_option( 'schnell_google_map_api_key', '' );
+	$markup = '';
+	if (!$value){
+		$markup = sprintf(
+			'<div class="notice notice-warning  is-dismissible">
+      			<h3>%1$s</h3>
+        		<p>It is mandatory, for the maps to be displayed,
+				that you get a key from the Google Maps API.
+				If you don\'t have one, you can get it by clicking
+				<a href="%2$s" target="_blank">here</a>.
+				</p>
+    		</div>',
+			__('Schnellbugel Plugin', 'schnell'), 										// #1 Title
+			'https://developers.google.com/maps/documentation/javascript/get-api-key' 	// #2 URL
+		);
+	}
+	echo $markup;
+}
+add_action( 'admin_notices', 'schnell_admin_notice__success' );
+
+/*
+ * BRANDING WORDPRESS ADMIN
+ */
+
+
+
+
 function mostrar_arreglo($array){
     echo '<pre>';
     print_r($array);
