@@ -255,6 +255,6 @@ add_action( 'admin_notices', 'schnell_admin_notice__success' );
 
 function mostrar_arreglo($array){
     echo '<pre>';
-    print_r($array);
+    var_dump($array);
     echo '</pre>';
 }
