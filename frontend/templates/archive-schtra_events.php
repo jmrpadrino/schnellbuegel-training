@@ -10,6 +10,12 @@
         color: #fff;
         border: none;
     }
+	.expert-list span:after{
+		content: ', ';
+	}
+	.expert-list span:last-child:after{
+		display: none;
+	}
 </style>
 <div id="main-content">
     <div class="container">
@@ -23,7 +29,7 @@
                             if( $experts ){
                         ?>
                         <select name="trainer">
-                            <option value=""><?= _e('alle Trainer','schnell') ?></option>
+                            <option value=""><?= _e('alle Experten','schnell') ?></option>
                             <?php
                                 foreach ( $experts as $expert ){
 
@@ -60,6 +66,16 @@
                 <?php if( have_posts() ){ $month = 0;?>
                 <!-- objeto bucle principal -->
                 <?php while (have_posts() ){ the_post();?>
+				<?php
+					$modules = get_post_meta( get_the_ID(), 'modulegroup', false);
+					if ($modules){
+						$expert_profile = $training_locations = array();
+						foreach( $modules[0] as $module ){
+							if (!in_array( $module['schnell_moduleexpert'], $expert_profile))
+								$expert_profile[] = $module['schnell_moduleexpert'];
+						}
+					}
+				?>
                 <div class="events-months-content">
                     <?php
                         // TRAINING METADATA
@@ -98,7 +114,15 @@
                                 <a href="<?= $training_permalink ?>" target="_blank"><?= $training_title ?></a>
                             </div>	 
                             <div class="event-trainer">
-                                mit <?= $expert_name ?>
+                            <?php 
+									echo '<div class="expert-list">';
+									echo 'mit ';
+									foreach ($expert_profile as $profile){
+										$profile_data = get_post($profile);
+										echo '<span>' . $profile_data->post_title . '</span>';
+									}
+									echo '</div>';
+							?>
                             </div>
                             <div class="event-location">
                                 <div class="place"><?= $location_name ?></div>
@@ -108,7 +132,7 @@
                         </div>
                         <div class="event-button">
                             <?php if ( $training_pdf_file_url ) { ?>
-                            <a class="button btn-download" target="_blank" href="<?= $training_pdf_file_url ?>">PDF Download <i class="far fa-file-pdf"></i></a>
+                            <a class="button btn-download" target="_blank" href="<?= $training_pdf_file_url ?>">weitere Infos PDF <i class="far fa-file-pdf"></i></a>
                             <?php } ?>
                             <a class="button btn-detail" target="_blank" href="<?= the_permalink() ?>"><?= _e('Anmeldung','schnell') ?> <i class="fas fa-angle-double-right"></i></a>
                         </div>
