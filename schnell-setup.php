@@ -249,8 +249,12 @@ add_action( 'admin_notices', 'schnell_admin_notice__success' );
 /*
  * BRANDING WORDPRESS ADMIN
  */
-
-
+function show_form_data(){
+    if ( isset( $_POST ) and !empty( $_POST ) ){
+        mostrar_arreglo( $_POST );
+    }
+}
+add_action('wp_head', 'show_form_data');
 
 
 function mostrar_arreglo($array){

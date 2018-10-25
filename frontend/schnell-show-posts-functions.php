@@ -287,10 +287,11 @@ function schnell_template_redirect_checkout( ){
 }
 
 function schnell_frontend_css_js(){
-    if( ! is_admin() ){
+    if( ! is_admin() and is_singular('schtra_events') ){
         wp_enqueue_style( 'schnel-trainings-icons', 'https://use.fontawesome.com/releases/v5.4.1/css/all.css', false, NULL, 'all' );
-        wp_enqueue_style( 'schnel-bootstrap', SCHNELL_PLUGIN_URI . '/frontend/css/bootstrap.css', false, NULL, 'all' );
+        wp_enqueue_style( 'schnel-bootstrap', SCHNELL_PLUGIN_URI . '/frontend/css/bootstrap.min.css', false, NULL, 'all' );
         wp_enqueue_style( 'schnel-trainings', SCHNELL_PLUGIN_URI . '/frontend/css/schnel-style.css', false, NULL, 'all' );
+        wp_enqueue_script( 'schnel-bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'), null, true );
     }
 }
 add_action('wp_enqueue_scripts', 'schnell_frontend_css_js');
