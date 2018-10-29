@@ -16,6 +16,29 @@
 	.expert-list span:last-child:after{
 		display: none;
 	}
+	@media only screen and (min-width: 320px) and (max-width: 480px){
+		.events-search select{
+			min-width: 100%;
+		}
+		.event-description{
+			flex-direction: column;
+		}
+		.event-description *:not(.far):not(.fas){
+			width: 100%;
+		}
+		.expert-list,
+		.event-location{
+			text-align: left;
+		}
+	}
+	@media only screen and (min-width: 768px) and (max-width: 1024px){
+		select[name="trainer"]{
+			max-width: 220px;
+		}
+		select[name="training"]{
+			max-width: 228px;
+		}
+	}
 </style>
 <div id="main-content">
     <div class="container">

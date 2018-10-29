@@ -3,6 +3,9 @@
     html{
         font-size: 16px;
     }
+	#buchung{
+		text-align: left;
+	}
     .single-event-container{
         font-family: inherit;
     }
@@ -32,6 +35,7 @@
     }
     .single-event-module-item p{
         padding-bottom: .3em;
+		text-align: left;
     }
     .single-event-module-item .row{
         display: flex;
@@ -46,6 +50,12 @@
     .fas{
         color: #e02b20!important;
     }
+	.single-event-trainer-features{
+		margin-bottom: 36px;
+	}
+	.single-event-trainer-features ul li{
+		text-align: left;
+	}
     .single-event-pdf-placeholder{
         display: flex;
         min-height: 60px;
@@ -133,6 +143,7 @@
     #buchung h5,
     #buchung h6{
         padding: 0;
+		text-align: left;
     }
     .buchung-submit-btn{
         color: #ffffff!important;
@@ -162,6 +173,18 @@
         background-repeat: no-repeat;
         background-position: right;
     }
+	@media only screen and (min-width: 320px) and (max-width: 480px){
+		h1, h2, h3, h4, h5, h6{
+			text-align: left;
+		}
+		.single-event-module-item .row{
+			flex-direction: column;
+		}
+		.buchung-tab-content{
+			text-align: left;
+			padding: 20px 8px;
+		}
+	}
 </style>
 <?php
     // TRAINING METADATA
@@ -196,8 +219,8 @@
                 ?>
                 <li class="single-event-module-item">
                     <div class="row">
-                        <div class="col-xs-2 text-center"><?= '<strong class="single-event-module-number">' . esc_html('Modul', 'schnell') . ' ' . $i . '</strong>' ?></div>
-                        <div class="col-xs-10">
+                        <div class="col-sm-3 col-md-2 text-center"><?= '<strong class="single-event-module-number">' . esc_html('Modul', 'schnell') . ' ' . $i . '</strong>' ?></div>
+                        <div class="col-sm-9 col-md-10">
                             <h3><?= get_the_title($module['schnell_moduleid']) ?></h3>
                             <hr />
                             <p><i class="far fa-user"></i> <?= get_the_title($module['schnell_moduleexpert']) ?></p>
@@ -236,10 +259,10 @@
             <?php foreach ( $experts as $expert ){ ?>
             <div class="single-event-trainer-features">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6 col-md-4">
                         <img src="<?= get_the_post_thumbnail_url($expert->ID) ?>" alt="<?= get_the_title($expert->ID) ?>">
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-6 col-md-8">
                         <h3><?= $expert->post_title ?></h3>
                         <ul>
                             <li><i class="fas fa-phone"></i> <?= get_post_meta( $expert->ID, $prefix . 'phone', true) ?></li>
@@ -270,23 +293,36 @@
             <?php foreach ( $locations as $location ){ ?>
             <div class="single-event-location-features">
                 <div class="row">
+					<?php
+						$show_map = get_post_meta( $location->ID, $prefix . 'show_gmap', true);
+						if( $show_map == 1){
+					?>
                     <div class="col-sm-4">
                         <div class="single-event-location-map">
+							<div id="schnell-map" style="height: 220px; width: 100%; margin-bottom: 36px;"></div>
                             <?php
-        $args = array(
-            'width'        => '640px',
-            'height'       => '480px',
-            'zoom'         => 14,
-            'marker'       => true,
-            'marker_icon'  => 'https://url_to_icon.png',
-            'marker_title' => 'Click me',
-            'info_window'  => '<h3>Title</h3><p>Content</p>.',
-        );
-        echo rwmb_meta( 'google_address', $args );
+								$args = array(
+									'width'        => '640px',
+									'height'       => '480px',
+									'zoom'         => 14,
+									'marker'       => true,
+									'marker_icon'  => 'https://url_to_icon.png',
+									'marker_title' => 'Click me',
+									'info_window'  => '<h3>Title</h3><p>Content</p>.',
+								);
+								$map_location = get_post_meta( $location->ID, 'map', true);
+								$map_location = explode(',', $map_location);
+								/*
+								echo $map_location[0];
+								echo $map_location[1];
+								echo $map_location[2];
+								*/
+								//echo rwmb_meta( 'google_address', $args );
                             ?>
                         </div>
                     </div>
-                    <div class="col-sm-8">
+					<?php } ?>
+                    <div class="col-sm-<?= ($show_map == 0) ? '12' : '8'; ?>">
                         <div class="single-event-location-info">
                             <h3><?= $location->post_title ?></h3>
                             <ul>
@@ -815,6 +851,22 @@
         </script>
     </div>
 </div>
+<script>
+	function initMap(){
+		// The location of Uluru
+		var germany = {lat: <?= $map_location[0] ?>, lng: <?= $map_location[1] ?>};
+		// The map, centered at Uluru
+		var map = new google.maps.Map(
+			document.getElementById('schnell-map'), {
+				zoom: <?= $map_location[2] ?>,
+				center: germany
+			});
+	}
+</script>
+<?php if( $show_map == 1){ ?>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=<?= get_option( 'schnell_google_map_api_key', '' ) ?>&callback=initMap"></script>
+<?php } ?>
 <?php
 
     get_footer();

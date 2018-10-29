@@ -293,5 +293,9 @@ function schnell_frontend_css_js(){
         wp_enqueue_style( 'schnel-trainings', SCHNELL_PLUGIN_URI . '/frontend/css/schnel-style.css', false, NULL, 'all' );
         wp_enqueue_script( 'schnel-bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'), null, true );
     }
+	if ( is_page() ){
+		wp_enqueue_style( 'schnel-trainings-icons', 'https://use.fontawesome.com/releases/v5.4.1/css/all.css', false, NULL, 'all' );
+		wp_enqueue_style( 'schnel-trainings', SCHNELL_PLUGIN_URI . '/frontend/css/schnel-style.css', false, NULL, 'all' );
+	}
 }
 add_action('wp_enqueue_scripts', 'schnell_frontend_css_js');

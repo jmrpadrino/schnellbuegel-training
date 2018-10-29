@@ -10,6 +10,7 @@
 add_filter( 'rwmb_meta_boxes', 'schn_register_locations_meta_boxes' );
 function schn_register_locations_meta_boxes( $meta_boxes ) {
     $prefix = 'schnell_';
+	$google_apy_key = get_option( 'schnell_google_map_api_key', '' );
     $meta_boxes[] = array(
         'id'         => 'location',
         'title'      => __('Location Information', 'schnell'),
@@ -320,7 +321,7 @@ function schn_register_locations_meta_boxes( $meta_boxes ) {
                 'address_field' => 'google_address',
 
                 // Google API key
-                'api_key'       => 'XXXXXXXXX',
+                'api_key'       => $google_apy_key,
             ),
             array(
                 'name'  => __('Show Google Map', 'schnell'),
