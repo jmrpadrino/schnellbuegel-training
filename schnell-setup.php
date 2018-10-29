@@ -246,6 +246,20 @@ function schnell_admin_notice__success() {
 }
 add_action( 'admin_notices', 'schnell_admin_notice__success' );
 
+/**
+ * SENDING MAIL VIA AJAX
+ */
+add_action('wp_ajax_nopriv_schnell_send_form','schnell_send_event_form');
+add_action('wp_ajax_schnell_send_form','schnell_send_event_form');
+
+function schnell_send_event_form()
+{
+
+    var_dump( $_POST );
+
+	wp_die();
+}
+
 /*
  * BRANDING WORDPRESS ADMIN
  */
