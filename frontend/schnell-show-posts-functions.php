@@ -292,6 +292,13 @@ function schnell_frontend_css_js(){
         wp_enqueue_style( 'schnel-bootstrap', SCHNELL_PLUGIN_URI . '/frontend/css/bootstrap.min.css', false, NULL, 'all' );
         wp_enqueue_style( 'schnel-trainings', SCHNELL_PLUGIN_URI . '/frontend/css/schnel-style.css', false, NULL, 'all' );
         wp_enqueue_script( 'schnel-bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'), null, true );
+
+        // REGISTER AJAX BEHAVIOR
+        wp_register_script('schnell_scripts', SCHNELL_PLUGIN_URI . '/frontend/js/schnell-scripts.js', array('jquery'), '1', true );
+        wp_enqueue_script('schnell_scripts');
+
+        wp_localize_script('schnell_scripts','schnell_vars',['ajaxurl'=>admin_url('admin-ajax.php')]);
+
     }
 	if ( is_page() ){
 		wp_enqueue_style( 'schnel-trainings-icons', 'https://use.fontawesome.com/releases/v5.4.1/css/all.css', false, NULL, 'all' );
@@ -299,3 +306,14 @@ function schnell_frontend_css_js(){
 	}
 }
 add_action('wp_enqueue_scripts', 'schnell_frontend_css_js');
+
+function schnell_plugin_body_classes($classes) {
+
+	global $post;
+    if ('schtra_events' == $post->post_type){
+        $classes[] = 'schnell-plugin-wrapper';
+        $classes[] = 'schnell-plugin-'.$post->post_name;
+    }
+	return $classes;
+}
+add_filter('body_class', 'schnell_plugin_body_classes');

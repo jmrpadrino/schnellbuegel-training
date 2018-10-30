@@ -379,15 +379,19 @@
                         <div class="buchung-tab-content">
                             <div role="tabpanel" class="tab-pane active" id="privat">
                                 <form id="anmeldung-privat" role="form" method="post">
+                                    <input type="hidden" name="anmeldung" value="privat">
+                                    <input type="hidden" name="anmeldung_training_name" value="<?= $training_title ?>">
+                                    <input type="hidden" name="anmeldung_training_start" value="<?= $training_startdate ?>">
+                                    <input type="hidden" name="anmeldung_training_end" value="<?= $training_enddate ?>">
                                     <input type="hidden" name="anmeldung_privat[privat-date-or-application]" value="<?= date('d.m.Y')?>">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h4>Anrede</h4>
                                             <label class="radio-inline">
-                                                <input type="radio" name="anmeldung_privat[anrede]" value="herr"> Herr
+                                                <input type="radio" name="anmeldung_privat[anrede]" value="herr" required> Herr
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="anmeldung_privat[anrede]" value="frau"> Frau
+                                                <input type="radio" name="anmeldung_privat[anrede]" value="frau" required> Frau
                                             </label>
                                         </div>
                                         <div class="col-sm-6">
@@ -398,23 +402,23 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h4>Vorname *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_privat[vorname]">
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_privat[vorname]" required>
                                         </div>
                                         <div class="col-sm-6">
                                             <h4>Nachname *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_privat[nachname]">
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_privat[nachname]" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <h4>Straße/Hausnr. *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_privat[strabe]">
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_privat[strabe]" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h4>PLZ *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_privat[plz]">
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_privat[plz]" required>
                                         </div>
                                         <div class="col-sm-6">
                                             <h4>Ort *</h4>
@@ -424,7 +428,7 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <h4>E-Mail *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_privat[email]">
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_privat[email]" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -534,12 +538,12 @@
                                             <h4>Konditionen *</h4>
                                             <div class="row">
                                                 <label class="radio-inline">
-                                                    <input type="checkbox" name="anmeldung_privat[cancelation-read]"> Ja, ich bestätige, dass ich die Stornobedingungen und die Allgemeinen Geschäftsbedingungen von FUTURE zur Kenntnis genommen habe.
+                                                    <input type="checkbox" name="anmeldung_privat[cancelation-read]" required> Ja, ich bestätige, dass ich die Stornobedingungen und die Allgemeinen Geschäftsbedingungen von FUTURE zur Kenntnis genommen habe.
                                                 </label>
                                             </div>
                                             <div class="row">
                                                 <label class="radio-inline">
-                                                    <input type="checkbox" name="anmeldung_privat[accept-data-protection]"> Ja, ich akzeptiere die Datenschutzbestimmungen und stimme der Verarbeitung meiner personenbezogenen Daten zu.
+                                                    <input type="checkbox" name="anmeldung_privat[accept-data-protection]" required> Ja, ich akzeptiere die Datenschutzbestimmungen und stimme der Verarbeitung meiner personenbezogenen Daten zu.
                                                 </label>
                                             </div>
                                         </div>
@@ -547,13 +551,14 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <p>Hinweis: Mit * gekennzeichnete Felder sind Pflichtfelder!</p>
-                                            <button class="buchung-submit-btn" type="submit" name="anmeldung_privat[submit]"><?= _e('Anmeldung absenden', 'schnel')?></button class="buchung-submit-btn">
+                                            <button id="anmeldung-privat-btn" class="buchung-submit-btn" type="submit" name="anmeldung_privat[submit]"><?= _e('Anmeldung absenden', 'schnel')?></button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="geschaftlich">
                                 <form id="anmeldung-geschaftlich" role="form" method="post">
+                                    <input type="hidden" name="anmeldung" value="geschaftlich">
                                     <input type="hidden" name="anmeldung_geschaftlich[geschaftlich-date-or-application]" value="<?= date('d.m.Y')?>">
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -847,6 +852,7 @@
                     jQuery('#teilnehmer-list').append(maqueta);
                     console.log(maqueta);
                 })
+
             })
         </script>
     </div>

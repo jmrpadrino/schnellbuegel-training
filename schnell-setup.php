@@ -10,6 +10,13 @@
  * on theme or child theme file structure
  */
 
+function mostrar_arreglo($array){
+    echo '<pre>';
+    print_r($array);
+    echo '</pre>';
+}
+
+
 add_action('wp_head', 'schn_styles_scripts');
 function schn_styles_scripts(){
     if (
@@ -181,7 +188,7 @@ add_action('pre_get_posts', function(){
 function schnell_option_markup(){
 	$markup = '';
 
-	$markup = '<p>It is mandatory, for the maps to be displayed, that you get a key from the Google Maps API. If you don\'t have one, you can get it by clicking <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">here</a>.</p>';
+	$markup = '<p class="description">It is mandatory, for the maps to be displayed, that you get a key from the Google Maps API. If you don\'t have one, you can get it by clicking <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">here</a>.</p>';
 
 	echo $markup;
 }
@@ -204,22 +211,53 @@ function schnell_option_markup_field(){
 
 	echo $markup;
 }
+function schnell_option_markup_field_email(){
+	$value = get_option( 'schnell_email_for_event_forms', '' );
+	$markup = '';
+
+	$markup = sprintf(
+		'<input
+			type="%1$s"
+			id="%2$s"
+			name="%3$s"
+			value="%4$s"
+		/>',
+		'text',
+		'schnell_email_for_event_forms',
+		'schnell_email_for_event_forms',
+		$value
+	);
+
+	echo $markup;
+}
 function schnell_options(){
 	register_setting( 'general',
 		'schnell_google_map_api_key',
 		'esc_attr'
 	);
+    register_setting( 'general',
+		'schnell_email_for_event_forms',
+		'esc_attr'
+	);
 	add_settings_section( 'schnell-options',
-		'Schnellbugel Plugin Google Map API key',
+		'Schnellbugel Plugin Requirements',
 		'schnell_option_markup',
 		'general'
 	);
+
 	add_settings_field( 'schnell_google_map_api_key',
 		'API key',
 		'schnell_option_markup_field',
 		'general',
 		'schnell-options',
 		array( 'label_for' => 'schnell_google_map_api_key' )
+	);
+    add_settings_field( 'schnell_option_markup_field_email',
+		'Email for Events Forms',
+		'schnell_option_markup_field_email',
+		'general',
+		'schnell-options',
+		array( 'label_for' => 'schnell_email_for_event_forms' )
 	);
 }
 add_action('admin_init', 'schnell_options');
@@ -254,25 +292,81 @@ add_action('wp_ajax_schnell_send_form','schnell_send_event_form');
 
 function schnell_send_event_form()
 {
+    $email_address = get_option( 'schnell_email_for_event_forms', '' );
+    $array_values = $_POST['values'];
+    $text = '';
+    /**
+     * IF USER SUBMITED Privat FORM
+     */
 
-    var_dump( $_POST );
+//    echo '<pre>';
+//    print_r($array_values);
+//    echo '</pre>';
+//
+//    die;
+
+    ob_start();
+    if ($array_values[0]['value'] == 'privat'){
+    ?>
+        <h1>Anmeldung - <?= $array_values[0]['value'] ?></h1>
+        <p><strong>Fur: </strong> <?= $array_values[1]['value'] ?></p>
+        <p>Vom <?= $array_values[2]['value'] ?> Bis <?= $array_values[3]['value'] ?></p>
+        <p><strong>Datum der Anwendung</strong> <?= $array_values[4]['value'] ?></p>
+        <ul>
+            <li><strong><?= $array_values[5]['value'] ?> <?= $array_values[7]['value'] ?> <?= $array_values[8]['value'] ?></strong></li>
+            <li>
+                <strong>E-Mail</strong>
+                <span><?= $array_values[12]['value'] ?></span>
+            </li>
+            <li>
+                <strong>Telefonnummer</strong>
+                <span><?= $array_values[13]['value'] ?></span>
+            </li>
+            <li>
+                <strong>Straße/Hausnr.</strong>
+                <span><?= $array_values[9]['value'] ?></span>
+            </li>
+            <li>
+                <strong>Ort</strong>
+                <span><?= $array_values[11]['value'] ?></span>
+            </li>
+            <li>
+                <strong>PLZs</strong>
+                <span><?= $array_values[10]['value'] ?></span>
+            </li>
+        </ul>
+    <?php
+        $html = ob_get_contents();
+    }
+    ob_end_clean();
+
+
+    /**
+     * IF USER SUBMITED Geschäftlich FORM
+     */
+
+    if ($array_values[0]['value'] == 'geschaftlich'){
+        $text = 'Anmeldung: ' . strtoupper($array_values[0]['value']) . '<br /> testeo';
+    }
+
+    add_filter( 'wp_mail_content_type', 'schnell_set_html_mail_content_type' );
+
+    $to = $email_address;
+    $subject = 'Anmeldung - '
+        . $array_values[1]['value'] . ' - '
+        . $array_values[2]['value'] . ' / '
+        . $array_values[3]['value'];
+
+    $body = $html;
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+
+    $mail = wp_mail($email_address, $subject, $body);
+
+    remove_filter( 'wp_mail_content_type', 'schnell_set_html_mail_content_type' );
 
 	wp_die();
 }
-
-/*
- * BRANDING WORDPRESS ADMIN
- */
-function show_form_data(){
-    if ( isset( $_POST ) and !empty( $_POST ) ){
-        mostrar_arreglo( $_POST );
-    }
+function schnell_set_html_mail_content_type() {
+    return 'text/html';
 }
-add_action('wp_head', 'show_form_data');
 
-
-function mostrar_arreglo($array){
-    echo '<pre>';
-    print_r($array);
-    echo '</pre>';
-}
