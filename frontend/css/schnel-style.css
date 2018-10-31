@@ -95,7 +95,7 @@
     color: white;
 }
 .theme-red .shortcode-event-list-single-link:hover{
-    border-color: #930000;
+    border-color: transparent;
     color: #930000;
     background: transparent;
 }

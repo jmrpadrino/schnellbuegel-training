@@ -183,7 +183,7 @@ function schnell_show_events( $atts ){
             $html .= '<a href="' . $training_permalink . '" target="_blank">';
             $html .= '<h4>' . $training_title . '</h4>';
             $html .= '</a>';
-            $html .= '<p class="training-date"><i class="far fa-calendar-alt"></i> ' . $training_startdate . '</p>';
+            $html .= '<p class="training-date"><i class="far fa-calendar-alt"></i> ' . str_replace('-', '.',  $training_startdate ). '</p>';
             $html .= '<p><strong><i class="fas fa-map-marker"></i> ' . $location_name . '</strong></p>';
             $html .= '<p>' . $location_address . '</p>';
             $html .= '<p>' . $location_city . '</p>';
@@ -246,7 +246,7 @@ function schnell_show_events_by_training( $training_id ){
 
             echo '<li>';
             echo '<p><i class="far fa-calendar-alt"></i> ' 
-                . $training_startdate 
+                . str_replace('-', '.',  $training_startdate )
                 . '</p>';
             echo '<p><i class="fas fa-map-marker"></i> ' 
                 . $location_name 
