@@ -11,6 +11,7 @@
     }
     .single-event-header-placeholder{
         text-align: center;
+		margin-top: 40px;
     }
     .single-event-header-placeholder h1{
         color: #e02b20!important;
@@ -365,10 +366,11 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div id="buchung" class="single-event-registerform-placeholder">
+				<?php do_action('schnell-content-before-registerform') ?>
                 <div class="single-event-registerform-title">
                     <h2><?= _e('Anmeldung für Neukunden','schnell')?></h2>
                     <h3><?= _e('Anmeldung', 'schnell') ?>: <?= $training_title ?></h3>
-                    <p><?= _e('Vom', 'schnell') ?> <?= $training_startdate ?>  <?= _e('Bis', 'schnell') ?> <?= $training_enddate ?></p>
+                    <p><?= _e('Vom', 'schnell') ?> <?= str_replace('-', '.', $training_startdate) ?>  <?= _e('Bis', 'schnell') ?> <?= str_replace('-', '.', $training_enddate) ?></p>
                     <div>
                         <!-- Nav tabs -->
                         <ul class="buchung-tab-list" role="tablist">
@@ -820,6 +822,7 @@
                         </div>
                     </div>
                 </div>
+				<?php do_action('schnell-content-after-registerform') ?>
             </div>
         </div>
         <script>
