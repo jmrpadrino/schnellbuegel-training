@@ -392,9 +392,11 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div id="buchung" class="single-event-registerform-placeholder">
+				<?php do_action('schnell-content-before-registerform') ?>
                 <div class="single-event-registerform-title">
                     <!--h2><?= _e('Anmeldung für Neukunden','schnell')?></h2-->
                     <h2><?= _e('Anmeldung', 'schnell') ?>: <?= $training_title ?></h2>
+
                     <p><?= _e('Vom', 'schnell') ?> <?= str_replace('-', '.', $training_startdate) ?>  <?= _e('Bis', 'schnell') ?> <?= str_replace('-', '.', $training_enddate) ?></p>
                     <div>
                         <!-- Nav tabs -->
@@ -837,7 +839,7 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <p>Hinweis: Mit * gekennzeichnete Felder sind Pflichtfelder!</p>
-                                            <button class="buchung-submit-btn" type="submit" name="anmeldung_geschaftlich[submit]"><?= _e('Anmeldung absenden', 'schnel')?></button class="buchung-submit-btn">
+                                            <button class="buchung-submit-btn" type="submit" name="anmeldung_geschaftlich[submit]"><?= _e('Anmeldung absenden', 'schnel')?></button>
                                         </div>
                                     </div>
                                 </form>
@@ -845,6 +847,7 @@
                         </div>
                     </div>
                 </div>
+				<?php do_action('schnell-content-after-registerform') ?>
             </div>
         </div>
 		<div class="row">
