@@ -224,14 +224,14 @@ function schnell_show_events_by_training( $training_id ){
     
 
     if ( $events ){
-        echo '<div class="shortcode-event-list-container">';
+        echo '<div class="shortcode-event-list-container theme-red">';
         echo '<h3 class="shortcode-event-list-title">' . esc_html('Bevorstehende Veranstaltungen für dieses Training', 'schnell') . '</h3>';
         echo '<ul class="shortcode-event-list">';
         foreach ( $events as $event ){
             $training_ID            = get_post_meta( $event->ID, $prefix . 'training', true );
             $training_title         = get_the_title( $training_ID );
             $training_startdate     = get_post_meta( $event->ID, $prefix . 'startdate', true );
-            $training_permalink     = get_post_permalink( $training_ID );
+            $training_permalink     = get_post_permalink( $event->ID );
             
             // EXPERT METADATA
             $expert_ID              = get_post_meta( $event->ID, $prefix . 'mainexpert', true );
@@ -245,7 +245,7 @@ function schnell_show_events_by_training( $training_id ){
             $location_city          = get_post_meta( $location_ID, $prefix . 'city', true);
 
             echo '<li>';
-            echo '<p><i class="far fa-calendar-alt"></i> ' 
+            echo '<p class="training-date"><i class="far fa-calendar-alt"></i> '
                 . str_replace('-', '.',  $training_startdate )
                 . '</p>';
             echo '<p><i class="fas fa-map-marker"></i> ' 
@@ -262,7 +262,7 @@ function schnell_show_events_by_training( $training_id ){
                 . $expert_name 
                 . '</a></p>';
             
-            echo '<a class="" href="' 
+            echo '<a class="shortcode-event-list-single-link" href="'
                 . $training_permalink . '">' 
                 . esc_html('Merh info / Anmelden', 'schnell') 
                 . ' <i class="fas fa-angle-double-right"></i></a>';
@@ -287,7 +287,7 @@ function schnell_template_redirect_checkout( ){
 }
 
 function schnell_frontend_css_js(){
-    if( ! is_admin() and is_singular('schtra_events') ){
+    if( ! is_admin() and is_singular('schtra_events') or is_singular('schtra_training') ){
         wp_enqueue_style( 'schnel-trainings-icons', 'https://use.fontawesome.com/releases/v5.4.1/css/all.css', false, NULL, 'all' );
         wp_enqueue_style( 'schnel-bootstrap', SCHNELL_PLUGIN_URI . '/frontend/css/bootstrap.min.css', false, NULL, 'all' );
         wp_enqueue_style( 'schnel-trainings', SCHNELL_PLUGIN_URI . '/frontend/css/schnel-style.css', false, NULL, 'all' );

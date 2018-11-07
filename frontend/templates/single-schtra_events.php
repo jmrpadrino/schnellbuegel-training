@@ -5,21 +5,23 @@
     }
 	#buchung{
 		text-align: left;
+		margin-bottom: 60px;
 	}
     .single-event-container{
         font-family: inherit;
     }
     .single-event-header-placeholder{
         text-align: center;
+		margin-top: 40px;
     }
     .single-event-header-placeholder h1{
-        color: #e02b20!important;
+        color: #CE1719!important;
         font-weight: 700;
     }
     .single-event-header-placeholder a{
         color: white;
         padding: 14px 17px;
-        background: #e02b20!important;
+        background: #CE1719!important;
     }
     .single-event-module-list{
         list-style: none;
@@ -48,7 +50,7 @@
     .single-event-module-item .text-center,
     .far,
     .fas{
-        color: #e02b20!important;
+        color: #CE1719!important;
     }
 	.single-event-trainer-features{
 		margin-bottom: 36px;
@@ -61,7 +63,7 @@
         min-height: 60px;
         align-content: center;
         justify-content: center;
-        border: 1px solid #e02b20!important;
+        border: 1px solid #CE1719!important;
         margin-top: 36px;
         margin-bottom: 36px;
     }
@@ -93,15 +95,15 @@
     }
     .buchung-tab-list li.active{
         font-weight: bold;
-        border: 1px solid #e02b20!important;
+        border: 1px solid #CE1719!important;
         border-bottom: 0;
     }
     .buchung-tab-list li.active a{
-        background: #e02b20!important;
+        background: #CE1719!important;
         color: white;
     }
     .buchung-tab-content{
-        border: 1px solid #e02b20!important;
+        border: 1px solid #CE1719!important;
         border-top: 0;
         padding: 20px 36px;
     }
@@ -147,11 +149,11 @@
     }
     .buchung-submit-btn{
         color: #ffffff!important;
-        background: #e02b20;
+        background: #CE1719;
         font-size: 16px;
         padding-left: 0.7em;
         padding-right: 2em;
-        background-color: #e02b20;
+        background-color: #CE1719;
         border: none;
         margin: 18px 0;
     }
@@ -162,10 +164,10 @@
     .buchung-submit-btn:hover{
         background: transparent;
         border: none;
-        color: #e02b20 !important;
+        color: #CE1719 !important;
     }
     .buchung-submit-btn:hover .fas{
-        color: #e02b20 !important;
+        color: #CE1719 !important;
     }
     #buchung select{
         background-image: url(<?= SCHNELL_PLUGIN_URI ?>/frontend/images/select-chevron-down.jpg);
@@ -202,9 +204,20 @@
         <div class="col-md-10 col-md-offset-1 single-event-header-placeholder">
             <h1><?= $training_title ?></h1>
             <?php do_action('schnell-luego-titulo') ?>
+            <?php
+                /**
+                 * COMMENTED BY CLIENT REQUIREMENT
+                 */
+                /*
             <a href="#buchung"><?= _e('Direkt zur Buchung','schnell') ?></a>
+            */ ?>
         </div>
     </div>
+    <?php
+                /**
+                 * COMMENTED BY CLIENT REQUIREMENT
+                 */
+                /*
     <?php
     $modules = get_post_meta( get_the_ID(), 'modulegroup', false);
                 if( $modules ){
@@ -240,6 +253,12 @@
         </div>
     </div>
     <?php } ?>
+    */ ?>
+    <?php
+                /**
+                 * COMMENTED BY CLIENT REQUIREMENT
+                 */
+                /*
     <?php
     if ( is_array($expert_profile) ){
         //$expert_profile = array_reverse($expert_profile, false);
@@ -275,6 +294,12 @@
         </div>
     </div>
     <?php } ?>
+    */ ?>
+    <?php
+                /**
+                 * COMMENTED BY CLIENT REQUIREMENT
+                 */
+                /*
     <?php
     if ( is_array($training_locations) ){
         $training_locations = array_reverse($training_locations, false);
@@ -312,11 +337,6 @@
 								);
 								$map_location = get_post_meta( $location->ID, 'map', true);
 								$map_location = explode(',', $map_location);
-								/*
-								echo $map_location[0];
-								echo $map_location[1];
-								echo $map_location[2];
-								*/
 								//echo rwmb_meta( 'google_address', $args );
                             ?>
                         </div>
@@ -339,6 +359,12 @@
         </div>
     </div>
     <?php } ?>
+    */ ?>
+    <?php
+                /**
+                 * COMMENTED BY CLIENT REQUIREMENT
+                 */
+                /*
     <div class="row">
         <div class="col-md-10 col-md-offset-1 single-event-moreinfo-placeholder">
             <h2><?= _e('Wichtige Information', 'schnell')?></h2>
@@ -362,13 +388,14 @@
             <p><a href="<?= $training_pdf_file_url ?>"><i class="far fa-file-pdf"></i> <?= _e('Weitere Informationen finden Sie in diesem PDF', 'schnell')?></a></p>
         </div>
     </div>
+    */ ?>
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div id="buchung" class="single-event-registerform-placeholder">
                 <div class="single-event-registerform-title">
-                    <h2><?= _e('Anmeldung für Neukunden','schnell')?></h2>
-                    <h3><?= _e('Anmeldung', 'schnell') ?>: <?= $training_title ?></h3>
-                    <p><?= _e('Vom', 'schnell') ?> <?= $training_startdate ?>  <?= _e('Bis', 'schnell') ?> <?= $training_enddate ?></p>
+                    <!--h2><?= _e('Anmeldung für Neukunden','schnell')?></h2-->
+                    <h2><?= _e('Anmeldung', 'schnell') ?>: <?= $training_title ?></h2>
+                    <p><?= _e('Vom', 'schnell') ?> <?= str_replace('-', '.', $training_startdate) ?>  <?= _e('Bis', 'schnell') ?> <?= str_replace('-', '.', $training_enddate) ?></p>
                     <div>
                         <!-- Nav tabs -->
                         <ul class="buchung-tab-list" role="tablist">
@@ -505,15 +532,13 @@
                                             <h4>Hotelreservierung</h4>
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                    <label class="radio-inline">
-                                                        <input data-target="privat-room_needed" type="radio" name="anmeldung_privat[hotel-registration-data]" value="0"> Ich bin damit einverstanden, dass die FUTURE GmbH meine Anmeldedaten zum Zweck der Hotelbuchung und -abrechnung an das angegebene Seminarhaus weitergibt. (Mit dem Hotel besteht eine Vereinbarung, dass die Daten nur für diese Zwecke und im Rahmen der DSGVO behandelt werden.)
-                                                    </label>
+                                                    <label class="radio-inline"><input data-target="privat-room_needed" type="radio" name="anmeldung_privat[hotel-registration-data]" value="0"> Ich bin damit einverstanden, dass die FUTURE-Die Unternehmensentwickler GmbH meine Anmeldedaten zum Zweck der Hotelbuchung und -abrechnung an das angegebene Seminarhaus weitergibt. (Mit dem Hotel besteht eine Vereinbarung, dass die Daten nur für diese Zwecke und im Rahmen der DSGVO behandelt werden.)</label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <label class="radio-inline">
-                                                        <input data-target="privat-room_needed" type="radio" name="anmeldung_privat[hotel-registration-data]" value="2"> Ich möchte nicht, dass die FUTURE GmbH meine Daten an das Hotel weitergibt, ich führe die entsprechende Hotelreservierung selbst durch.
+                                                        <input data-target="privat-room_needed" type="radio" name="anmeldung_privat[hotel-registration-data]" value="2"> Ich möchte nicht, dass die FUTURE-Die Unternehmensentwickler GmbH meine Daten an das Hotel weitergibt, ich führe die entsprechende Hotelreservierung selbst durch.
                                                     </label>
                                                 </div>
                                             </div>
@@ -767,14 +792,14 @@
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <label class="radio-inline">
-                                                        <input data-target="geschaftlich_room_needed" type="radio" name="anmeldung_geschaftlich[hotel-registration-data]" value="0"> Ich bin damit einverstanden, dass die FUTURE GmbH meine Anmeldedaten zum Zweck der Hotelbuchung und -abrechnung an das angegebene Seminarhaus weitergibt. (Mit dem Hotel besteht eine Vereinbarung, dass die Daten nur für diese Zwecke und im Rahmen der DSGVO behandelt werden.)
+                                                        <input data-target="geschaftlich_room_needed" type="radio" name="anmeldung_geschaftlich[hotel-registration-data]" value="0"> Ich bin damit einverstanden, dass die FUTURE-Die Unternehmensentwickler GmbH meine Anmeldedaten zum Zweck der Hotelbuchung und -abrechnung an das angegebene Seminarhaus weitergibt. (Mit dem Hotel besteht eine Vereinbarung, dass die Daten nur für diese Zwecke und im Rahmen der DSGVO behandelt werden.)
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <label class="radio-inline">
-                                                        <input data-target="geschaftlich_room_needed" type="radio" name="anmeldung_geschaftlich[hotel-registration-data]" value="2"> Ich möchte nicht, dass die FUTURE GmbH meine Daten an das Hotel weitergibt, ich führe die entsprechende Hotelreservierung selbst durch.
+                                                        <input data-target="geschaftlich_room_needed" type="radio" name="anmeldung_geschaftlich[hotel-registration-data]" value="2"> Ich möchte nicht, dass die FUTURE-Die Unternehmensentwickler GmbH meine Daten an das Hotel weitergibt, ich führe die entsprechende Hotelreservierung selbst durch.
                                                     </label>
                                                 </div>
                                             </div>
@@ -822,6 +847,14 @@
                 </div>
             </div>
         </div>
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<?php
+					if (shortcode_exists( 'et_social_share' ) )
+						echo do_shortcode('[et_social_share]');
+				?>
+			</div>
+		</div>
         <script>
             jQuery(document).ready( function(){
                 jQuery('.buchung-tab-list li a').click( function(){

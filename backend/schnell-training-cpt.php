@@ -266,6 +266,8 @@ if ( ! function_exists('schnell_training_events') ) {
             'publicly_queryable'    => true,
             'rewrite'               => $rewrite,
             'capability_type'       => 'post',
+			'show_in_rest'          => true,
+			'rest_base'             => 'schtra-events',
         );
         register_post_type( 'schtra_events', $args );
 
@@ -341,3 +343,20 @@ if ( ! function_exists('schnell_training') ) {
     add_action( 'init', 'schnell_training', 0 );
 
 }
+
+add_action( 'rest_api_init', 'create_event_post_meta_on_api' ); //
+
+function create_event_post_meta_on_api() {
+	register_rest_field( 'schtra_events',
+						  'schtra_events_meta_fields',
+						  array(
+						  	'get_callback' => 'callback_read_events_meta_fields'
+							)
+						);
+}
+
+function callback_read_events_meta_fields( $object ) {
+	$post_id = $object['id'];
+	return get_post_meta( $post_id );
+}
+

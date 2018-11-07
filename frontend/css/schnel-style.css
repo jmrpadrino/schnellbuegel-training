@@ -21,6 +21,8 @@
     border: 1px solid lightgray;
     overflow: auto;
     position: relative;
+	min-height: 100px;
+    text-align: left;
 }
 .shortcode-event-list p:not(.training-date){
     margin: 0;
@@ -33,7 +35,9 @@
     background: black;
     color: white;
     border: 1px solid transparent;
+    -webkit-box-shadow: none;
     box-shadow: none;
+    -webkit-transition: all ease-in .2s;
     transition: all ease-in .2s;
     position: absolute;
     bottom: 10px;
@@ -44,6 +48,7 @@
     border-color: black;
     color: black;
     background: transparent;
+    -webkit-transition: all ease-in .2s;
     transition: all ease-in .2s;
     -webkit-box-shadow: none;
     box-shadow: none;
