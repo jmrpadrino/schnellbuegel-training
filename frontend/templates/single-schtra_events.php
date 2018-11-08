@@ -729,7 +729,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                    <button class="buchung-submit-btn" id="add-person" type="button" class="buchung-submit-btn">Weiterer Teilnehmer <i class="fas fa-plus"></i></button>
+                                                    <button class="buchung-submit-btn" id="add-person" type="button" class="buchung-submit-btn">Weiterer Teilnehmer <i class="fa fa-plus"></i></button>
                                                 </div>
                                             </div>
                                         </div>

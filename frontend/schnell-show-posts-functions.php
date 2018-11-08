@@ -76,7 +76,7 @@ function schnell_set_order_on_archive( $query ){
         $query->set( 'paged', true );
         $query->set( 'posts_per_page', 1 );
         $query->set( 'meta_key', $keyname);
-        $query->set( 'orderby', array ('meta_value_num' => 'ASC' ));
+        $query->set( 'orderby', array ('meta_value_num' => 'DESC' ));
 
     }
     
@@ -183,11 +183,11 @@ function schnell_show_events( $atts ){
             $html .= '<a href="' . $training_permalink . '" target="_blank">';
             $html .= '<h4>' . $training_title . '</h4>';
             $html .= '</a>';
-            $html .= '<p class="training-date"><i class="far fa-calendar-alt"></i> ' . str_replace('-', '.',  $training_startdate ). '</p>';
-            $html .= '<p><strong><i class="fas fa-map-marker"></i> ' . $location_name . '</strong></p>';
+            $html .= '<p class="training-date"><i class="fa fa-calendar-alt"></i> ' . str_replace('-', '.',  $training_startdate ). '</p>';
+            $html .= '<p><strong><i class="fa fa-map-marker"></i> ' . $location_name . '</strong></p>';
             $html .= '<p>' . $location_address . '</p>';
             $html .= '<p>' . $location_city . '</p>';
-            $html .= '<a class="shortcode-event-list-single-link" href="' . get_post_permalink( $event->ID ) . '" target="_blank">' . esc_html('Anmeldung', 'schnell') . ' <i class="fas fa-angle-double-right"></i></a>';
+            $html .= '<a class="shortcode-event-list-single-link" href="' . get_post_permalink( $event->ID ) . '" target="_blank">' . esc_html('Anmeldung', 'schnell') . ' <i class="fa fa-angle-double-right"></i></a>';
             $html .= '</li>';
         }
         $html .= '</ul>';
@@ -248,13 +248,13 @@ function schnell_show_events_by_training( $training_id ){
             echo '<p class="training-date"><i class="far fa-calendar-alt"></i> '
                 . str_replace('-', '.',  $training_startdate )
                 . '</p>';
-            echo '<p><i class="fas fa-map-marker"></i> ' 
+            echo '<p><i class="fa fa-map-marker"></i> ' 
                 . $location_name 
                 . ', ' 
                 . $location_address 
                 . ' ' 
                 . $location_city . '</p>';
-            echo '<p><i class="fas fa-user"></i> ' 
+            echo '<p><i class="fa fa-user"></i> ' 
                 . esc_html('Trainer', 'schnell') 
                 . ': <a href="'
                 . $expert_permalink 
@@ -265,7 +265,7 @@ function schnell_show_events_by_training( $training_id ){
             echo '<a class="shortcode-event-list-single-link" href="'
                 . $training_permalink . '">' 
                 . esc_html('Merh info / Anmelden', 'schnell') 
-                . ' <i class="fas fa-angle-double-right"></i></a>';
+                . ' <i class="fa fa-angle-double-right"></i></a>';
             
             echo '</li>';
         }
@@ -288,7 +288,6 @@ function schnell_template_redirect_checkout( ){
 
 function schnell_frontend_css_js(){
     if( ! is_admin() and is_singular('schtra_events') or is_singular('schtra_training') ){
-        wp_enqueue_style( 'schnel-trainings-icons', 'https://use.fontawesome.com/releases/v5.4.1/css/all.css', false, NULL, 'all' );
         wp_enqueue_style( 'schnel-bootstrap', SCHNELL_PLUGIN_URI . '/frontend/css/bootstrap.min.css', false, NULL, 'all' );
         wp_enqueue_style( 'schnel-trainings', SCHNELL_PLUGIN_URI . '/frontend/css/schnel-style.css', false, NULL, 'all' );
         wp_enqueue_script( 'schnel-bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'), null, true );
@@ -301,7 +300,6 @@ function schnell_frontend_css_js(){
 
     }
 	if ( is_page() ){
-		wp_enqueue_style( 'schnel-trainings-icons', 'https://use.fontawesome.com/releases/v5.4.1/css/all.css', false, NULL, 'all' );
 		wp_enqueue_style( 'schnel-trainings', SCHNELL_PLUGIN_URI . '/frontend/css/schnel-style.css', false, NULL, 'all' );
 	}
 }

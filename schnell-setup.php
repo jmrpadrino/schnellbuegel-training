@@ -17,7 +17,7 @@ function mostrar_arreglo($array){
 }
 
 
-add_action('wp_head', 'schn_styles_scripts');
+//add_action('wp_head', 'schn_styles_scripts');
 function schn_styles_scripts(){
     if (
         // fontawesome for events
@@ -35,7 +35,7 @@ function schn_styles_scripts(){
         is_single('schtra_expert')      ||
         is_singular('schtra_expert')
     ){
-        wp_enqueue_style('schnell-training-icons', 'https://use.fontawesome.com/releases/v5.3.1/css/all.css', null, null);
+        //wp_enqueue_style('schnell-training-icons', 'https://use.fontawesome.com/releases/v5.3.1/css/all.css', null, null);
     }
     /*
     if (
