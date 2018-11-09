@@ -47,7 +47,7 @@ function schnell_training_category() {
 		'show_tagcloud'              => true,
 		'rewrite'                    => $rewrite,
 	);
-	register_taxonomy( 'schnell-training-cat', array( 'schtra_training' ), $args );
+	register_taxonomy( 'schnell-training-cat', array( 'schtra_training', 'schtra_events' ), $args );
 
 }
 add_action( 'init', 'schnell_training_category', 0 );

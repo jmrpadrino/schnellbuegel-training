@@ -140,10 +140,10 @@
                     <?php $month = $split_date[1]; ?>
                     <!-- objeto bucle posts -->
                     <div class="event-description">
-                        <div class="event-time"><i class="far fa-calendar-alt"></i> <?= str_replace('-', '.', $training_startdate) . ' - ' . str_replace('-', '.',  $training_enddate ) ?></div>
+                        <div class="event-time"><i class="fa fa-calendar"></i> <?= str_replace('-', '.', $training_startdate) . ' - ' . str_replace('-', '.',  $training_enddate ) ?></div>
                         <div class="event-detail">
                             <div class="event-name">
-                                <a href="<?= $training_permalink ?>" target="_blank"><?= $training_title ?></a>
+                                <a href="<?= $training_permalink ?>"  ><?= $training_title ?></a>
                             </div>	 
                             <div class="event-trainer">
                             <?php 
@@ -164,9 +164,9 @@
                         </div>
                         <div class="event-button">
                             <?php if ( $training_pdf_file_url ) { ?>
-                            <a class="button btn-download" target="_blank" href="<?= $training_pdf_file_url ?>">weitere Infos PDF <i class="fa fa-file-pdf-o"></i></a>
+                            <a class="button btn-download"   href="<?= $training_pdf_file_url ?>">weitere Infos PDF <i class="fa fa-file-pdf-o"></i></a>
                             <?php } ?>
-                            <a class="button btn-detail" target="_blank" href="<?= the_permalink() ?>"><?= _e('Anmeldung','schnell') ?> <i class="fa fa-angle-double-right"></i></a>
+                            <a class="button btn-detail"   href="<?= the_permalink() ?>"><?= _e('Anmeldung','schnell') ?> <i class="fa fa-angle-double-right"></i></a>
                         </div>
                     </div>
                     <!-- -->

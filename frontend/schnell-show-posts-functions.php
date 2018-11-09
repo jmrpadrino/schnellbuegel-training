@@ -76,7 +76,7 @@ function schnell_set_order_on_archive( $query ){
         $query->set( 'paged', true );
         $query->set( 'posts_per_page', 1 );
         $query->set( 'meta_key', $keyname);
-        $query->set( 'orderby', array ('meta_value_num' => 'DESC' ));
+        $query->set( 'orderby', array ('meta_value_num' => 'ASC' ));
 
     }
     
@@ -109,18 +109,18 @@ add_action('pre_get_posts', 'schnell_set_order_on_archive');
 
 function schnell_show_month($month_number){
     $months = array(
-        1 => __('Januar','schnell'),
-        2 => __('Februar','schnell'),
-        3 => __('März','schnell'),
-        4 => __('April','schnell'),
-        5 => __('Mai','schnell'),
-        6 => __('Juni','schnell'),
-        7 => __('Juli','schnell'),
-        8 => __('August','schnell'),
-        9 => __('September','schnell'),
-        10 => __('Oktober','schnell'),
-        11 => __('November','schnell'),
-        12 => __('Dezember','schnell'),
+        '01' => __('Januar','schnell'),
+        '02' => __('Februar','schnell'),
+        '03' => __('März','schnell'),
+        '04' => __('April','schnell'),
+        '05' => __('Mai','schnell'),
+        '06' => __('Juni','schnell'),
+        '07' => __('Juli','schnell'),
+        '08' => __('August','schnell'),
+        '09' => __('September','schnell'),
+        '10' => __('Oktober','schnell'),
+        '11' => __('November','schnell'),
+        '12' => __('Dezember','schnell'),
     );
     return $months[$month_number];
 }
@@ -137,7 +137,8 @@ function schnell_show_events( $atts ){
     $prefix = 'schnell_';
 
     $a = shortcode_atts( array(
-        'expert' => '',
+        'catid' => '',
+        'order' => 'ASC',
         'show-box-title' => "true",
         'box-title' => esc_html('Bevorstehende Veranstaltungen', 'schnell'),
         'posts-per-page' => 4,
@@ -146,16 +147,20 @@ function schnell_show_events( $atts ){
 
     $args = array( 'post_type' => 'schtra_events', 'posts_per_page' => $a['posts-per-page'] );
 
-    if ( $a['expert'] != ''){
+    if ( !empty($a['catid']) ){
         $args = array(
-            'meta_query'        => array(
+            'post_type' => 'schtra_events',
+            'posts_per_page'    => $a['posts-per-page'],
+            'tax_query' => array(
                 array(
-                    'key'       => $prefix . 'mainexpert',
-                    'value'     => $a['expert']
-                )
+                    'taxonomy' => 'schnell-training-cat',
+                    'field'    => 'term_id',
+                    'terms'    => $a['catid']
+                ),
             ),
-            'post_type'         => 'schtra_events',
-            'posts_per_page'    => $a['posts-per-page']
+            'meta_key' => $prefix . 'startdate',
+            'orderby' => array ('meta_value_num' => $a['order'] )
+
         );
     }
 
@@ -183,7 +188,7 @@ function schnell_show_events( $atts ){
             $html .= '<a href="' . $training_permalink . '" target="_blank">';
             $html .= '<h4>' . $training_title . '</h4>';
             $html .= '</a>';
-            $html .= '<p class="training-date"><i class="fa fa-calendar-alt"></i> ' . str_replace('-', '.',  $training_startdate ). '</p>';
+            $html .= '<p class="training-date"><i class="fa fa-calendar"></i> ' . str_replace('-', '.',  $training_startdate ). '</p>';
             $html .= '<p><strong><i class="fa fa-map-marker"></i> ' . $location_name . '</strong></p>';
             $html .= '<p>' . $location_address . '</p>';
             $html .= '<p>' . $location_city . '</p>';
@@ -195,7 +200,6 @@ function schnell_show_events( $atts ){
     }
     return $html;
 }
-
 
 /*
  * SHORTCODE TO SHOW LAST EVENTS BY TRAINING
@@ -245,7 +249,7 @@ function schnell_show_events_by_training( $training_id ){
             $location_city          = get_post_meta( $location_ID, $prefix . 'city', true);
 
             echo '<li>';
-            echo '<p class="training-date"><i class="far fa-calendar-alt"></i> '
+            echo '<p class="training-date"><i class="fa fa-calendar"></i> '
                 . str_replace('-', '.',  $training_startdate )
                 . '</p>';
             echo '<p><i class="fa fa-map-marker"></i> ' 
@@ -264,7 +268,7 @@ function schnell_show_events_by_training( $training_id ){
             
             echo '<a class="shortcode-event-list-single-link" href="'
                 . $training_permalink . '">' 
-                . esc_html('Merh info / Anmelden', 'schnell') 
+                . esc_html('mehr info / Anmelden', 'schnell')
                 . ' <i class="fa fa-angle-double-right"></i></a>';
             
             echo '</li>';
