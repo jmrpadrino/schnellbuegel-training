@@ -175,6 +175,9 @@
         background-repeat: no-repeat;
         background-position: right;
     }
+    .teilnehmer-form{
+        margin-top: 36px;
+    }
 	.remove-guest{
 		color: white;
 		float: right;
@@ -944,6 +947,18 @@ jQuery.each( nombres, function( i, val){
 							nextDataValue +
 							'" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button>'
 						)
+
+                    jQuery.each(
+                        lastChild.find('input'),
+                        function (i, val){
+                            jQuery(this).val('')
+
+                            jQuery(this).attr('name', jQuery(this).attr('name').replace(/[1-9]/g, nextDataValue))
+
+                            console.log(jQuery(this).attr('name'))
+                        }
+                    )
+
 
                 })
 				// REMOVE GUEST

@@ -24,8 +24,10 @@
 		.event-description{
 			flex-direction: column;
 		}
-		.event-description *:not(.far):not(.fas){
+		.event-description .event-button .button,
+        .event-time{
 			width: 100%;
+
 		}
 		.expert-list,
 		.event-location{
@@ -110,10 +112,13 @@
                         $expert_ID              = get_post_meta(get_the_ID(), $prefix . 'mainexpert', true );
                         $expert_name            = get_the_title( $expert_ID );
                         $expert_permalink       = get_post_permalink( $expert_ID );
-											
+
+				        $expert_profile = '';
+                        $training_locations = '';
+
 						$modules = get_post_meta( get_the_ID(), 'modulegroup', false);
 						if ( $modules and count($modules) > 1 ){
-							$expert_profile = $training_locations = array();
+
 							foreach( $modules[0] as $module ){
 								if (!in_array( $module['schnell_moduleexpert'], $expert_profile))
 									$expert_profile[] = $module['schnell_moduleexpert'];

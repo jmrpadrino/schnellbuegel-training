@@ -30,6 +30,23 @@ function schn_register_trainings_meta_boxes( $meta_boxes ) {
                 'rows'  => 10
             ),
             array(
+                'name'  => __('The Duration', 'schnell'),
+                'id'    => $prefix . 'duration',
+                'type'  => 'textarea',
+            ),
+            array(
+                'name'  => __('More information', 'schnell'),
+                'id'    => $prefix . 'moreinformation',
+                'type'  => 'textarea',
+                'rows'  => 5
+            ),
+            array(
+                'name'  =>  __('Further Information', 'schnell'),
+                'id'    => $prefix . 'furtherinformation',
+                'type'  => 'textarea',
+                'rows'  => 5
+            ),
+            array(
                 'name'  => __('Training PDF document', 'schnell'),
                 'id'    => $prefix . 'pdf',
                 'type'  => 'file_input',
@@ -39,6 +56,23 @@ function schn_register_trainings_meta_boxes( $meta_boxes ) {
         )
     );
     
+    $meta_boxes[] = array(
+        'id'         => 'eventfeatures',
+        'title'      => __('Training Price', 'schnell'),
+        'post_types' => 'schtra_training',
+        'context'    => 'side',
+        'priority'   => 'high',
+
+        'fields' => array(
+            array(
+                'name'  => __('Cost', 'schnell'),
+                'id'    => $prefix . 'cost',
+                'type'  => 'number',
+                'step'  => 0.01
+            ),
+        )
+    );
+
     $meta_boxes[] = array(
         'id'         => 'maininformation',
         'title'      => __('Main Information', 'schnell'),

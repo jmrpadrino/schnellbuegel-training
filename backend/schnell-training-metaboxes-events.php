@@ -35,7 +35,8 @@ function schn_register_events_meta_boxes( $meta_boxes ) {
                 'id'    => $prefix . 'mainlocation',
                 'type'  => 'post',
                 'post_type' => 'schtra_location'
-            ),
+            )
+            /*,
             array(
                 'name'  => __('The Duration', 'schnell'),
                 'id'    => $prefix . 'duration',
@@ -46,7 +47,7 @@ function schn_register_events_meta_boxes( $meta_boxes ) {
                 'id'    => $prefix . 'moreinformation',
                 'type'  => 'textarea',
                 'rows'  => 5
-            )
+            )*/
         )
     );
     
@@ -58,12 +59,14 @@ function schn_register_events_meta_boxes( $meta_boxes ) {
         'priority'   => 'high',
 
         'fields' => array(
+            /*
             array(
                 'name'  => __('Cost', 'schnell'),
                 'id'    => $prefix . 'cost',
                 'type'  => 'number',
                 'step'  => 0.01
             ),
+            */
             array(
                 'name'  => __('Start Date', 'schnell'),
                 'id'    => $prefix . 'startdate',
@@ -84,24 +87,7 @@ function schn_register_events_meta_boxes( $meta_boxes ) {
             ),
         )
     );
-    
-    $meta_boxes[] = array(
-        'id'         => 'furtherinformation',
-        'title'      => __('Further Information', 'schnell'),
-        'post_types' => 'schtra_events',
-        'context'    => 'normal',
-        'priority'   => 'high',
 
-        'fields' => array(
-            
-            array(
-                'name'  => '',
-                'id'    => $prefix . 'furtherinformation',
-                'type'  => 'textarea',
-                'rows'  => 5
-            )
-        )
-    );
     
     /*
     * HERE STARTS THE METABOX GROUP 
@@ -129,7 +115,7 @@ function schn_register_events_meta_boxes( $meta_boxes ) {
                         'type'  => 'post',
                         'name'  => __('Module Title', 'schnell'),
                         'post_type' => array(
-                            0 => 'schtra_training'
+                            0 => 'schtra_module'
                         ),
                         'field_type' => 'select'
                     ),

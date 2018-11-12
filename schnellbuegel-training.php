@@ -43,7 +43,11 @@ require_once 'backend/schnell-training-metaboxes-locations.php';
 require_once 'backend/schnell-training-metaboxes-trainings.php';
 require_once 'backend/schnell-training-metaboxes-events.php';
 
-/* FRONTEND DEPENDENCIESN */
+
+/* EMAIL */
+require_once 'emails/schnell-emails.php';
+
+/* FRONTEND DEPENDENCIES */
 require_once 'frontend/schnell-divi-cpt-support.php';
 require_once 'frontend/schnell-show-posts-functions.php';
 
