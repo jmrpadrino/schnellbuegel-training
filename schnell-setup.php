@@ -295,51 +295,207 @@ function schnell_send_event_form()
     $email_address = get_option( 'schnell_email_for_event_forms', '' );
     $array_values = $_POST['values'];
     $text = '';
-    /**
+
+	parse_str($array_values, $new_array);
+
+	echo '<pre>';
+	print_r($new_array);
+	echo '</pre>';
+	die;
+    ob_start();
+
+	/**
      * IF USER SUBMITED Privat FORM
      */
 
-//    echo '<pre>';
-//    print_r($array_values);
-//    echo '</pre>';
-//
-//    die;
-
-    ob_start();
-    if ($array_values[0]['value'] == 'privat'){
+    if ($new_array['anmeldung'] == 'privat'){
     ?>
-        <h1>Anmeldung - <?= $array_values[0]['value'] ?></h1>
+        <h1>Anmeldung - <?= $new_array['anmeldung'] ?></h1>
+        <p><strong>Fur: </strong> <?= $new_array['anmeldung_training_name'] ?></p>
+        <p>Vom <?= $new_array['anmeldung_training_start'] ?> Bis <?= $new_array['anmeldung_training_end'] ?></p>
+        <p><strong>Datum der Anwendung</strong> <?= $new_array['anmeldung_privat']['privat-date-or-application'] ?></p>
+        <ul>
+			<li><strong><?= $new_array['anmeldung_privat']['anrede'] ?></strong></li>
+            <li><strong><?= $new_array['anmeldung_privat']['title'] ?> <?= $new_array['anmeldung_privat']['vorname'] ?> <?= $new_array['anmeldung_privat']['nachname'] ?></strong></li>
+            <li>
+                <strong>E-Mail</strong>
+                <span><a href="mailto:<?= $new_array['anmeldung_privat']['email'] ?>"><?= $new_array['anmeldung_privat']['email'] ?></a></span>
+            </li>
+            <li>
+                <strong>Telefonnummer</strong>
+                <span><?= $new_array['anmeldung_privat']['phone'] ?></span>
+            </li>
+            <li>
+                <strong>Straße/Hausnr.</strong>
+                <span><?= $new_array['anmeldung_privat']['strabe'] ?></span>
+            </li>
+            <li>
+                <strong>Ort</strong>
+                <span><?= $new_array['anmeldung_privat']['ort'] ?></span>
+            </li>
+            <li>
+                <strong>PLZs</strong>
+                <span><?= $new_array['anmeldung_privat']['plz'] ?></span>
+            </li>
+            <?php
+				if (!empty($$new_array['anmeldung_privat']['brith-date'])) {
+			?>
+            <li>
+            	<strong>Geburtsdatum</strong>
+            	<span><?= $new_array['anmeldung_privat']['brith-date'] ?></span>
+            </li>
+            <?php
+				} //endif
+				// allow personal information at hotel
+				echo '<li>';
+				switch ($new_array['anmeldung_privat']['brith-date']){
+					case 0:
+						echo 'Der Nutzer verpflichtet sich, die Anmeldedaten an das angegebene Seminarhaus zum Zwecke der Hotelbuchung und -abrechnung weiterzugeben.';
+						break;
+					case 2:
+						echo 'Der Nutzer möchte nicht, dass die FUTURE-Die Unternehmensentwickler GmbH die Daten an das Hotel weitergibt, der Nutzer macht die Hotelbuchung selbst.';
+						break;
+				}
+				echo '</li>';
+				// room needed
+				echo '<li>';
+				echo '<strong>GERNE RESERVIEREN WIR FÜR SIE EIN ZIMMER:</strong>';
+				switch ($new_array['anmeldung_privat']['room_needed']){
+					case 0:
+						echo 'ab dem Vortag.';
+						break;
+					case 1:
+						echo 'ab dem ersten Seminartag.';
+						break;
+					case 2:
+						echo 'es wird kein Zimmer benötigt.';
+						break;
+				}
+				echo '</li>';
+				// validate message
+				if (!empty($new_array['anmeldung_privat']['room_needed'])) {
+			?>
+            <li>
+            	<strong>MEINE NACHRICHT AN DIE MITARBEITER VON FUTURE</strong>
+            	<p><?= $new_array['anmeldung_privat']['message_to_staff'] ?></p>
+            </li>
+            <?php } ?>
+        </ul>
+        <?php
+			if ($new_array['anmeldung_privat']['dif-billing-address']['status'] == 'on'){
+				echo '<h2>Rechnungsinformationen</h2>';
+				echo '<ul>';
+				echo '<li><strong>Andere</strong> ' . $new_array['anmeldung_privat']['dif-billing-address']['andere'] . '</li>';
+				echo '<li><strong>Title</strong> ' . $new_array['anmeldung_privat']['dif-billing-address']['title'] . '</li>';
+				echo '<li><strong>Vorname</strong> ' . $new_array['anmeldung_privat']['dif-billing-address']['vorname'] . '</li>';
+				echo '<li><strong>Nachname</strong> ' . $new_array['anmeldung_privat']['dif-billing-address']['nachname'] . '</li>';
+				echo '<li><strong>Strabe</strong> ' . $new_array['anmeldung_privat']['dif-billing-address']['strabe'] . '</li>';
+				echo '<li><strong>PLZ</strong> ' . $new_array['anmeldung_privat']['dif-billing-address']['plz'] . '</li>';
+				echo '<li><strong>ort</strong> ' . $new_array['anmeldung_privat']['dif-billing-address']['ort'] . '</li>';
+				echo '</ul>';
+			}
+		?>
+    <?php
+    } // END Privat FORM
+
+	/**
+     * IF USER SUBMITED Geschaftlich FORM
+     */
+	if ($new_array['anmeldung'] == 'geschaftlich'){
+	?>
+		<h1>Anmeldung - <?= $array_values[0]['value'] ?></h1>
         <p><strong>Fur: </strong> <?= $array_values[1]['value'] ?></p>
         <p>Vom <?= $array_values[2]['value'] ?> Bis <?= $array_values[3]['value'] ?></p>
         <p><strong>Datum der Anwendung</strong> <?= $array_values[4]['value'] ?></p>
         <ul>
-            <li><strong><?= $array_values[5]['value'] ?> <?= $array_values[7]['value'] ?> <?= $array_values[8]['value'] ?></strong></li>
+           	<li>
+           		<strong>Firma</strong>
+           		<span><?= $array_values[5]['value'] ?></span>
+           	</li>
+           	<li>
+           		<strong>UID Nummer</strong>
+           		<span><?= $array_values[6]['value'] ?></span>
+           	</li>
+            <li><strong><?= $array_values[7]['value'] ?> <?= $array_values[8]['value'] ?> <?= $array_values[9]['value'] ?> <?= $array_values[10]['value'] ?></strong></li>
             <li>
                 <strong>E-Mail</strong>
-                <span><?= $array_values[12]['value'] ?></span>
+                <span><a href="mailto:<?= $array_values[14]['value'] ?>"><?= $array_values[14]['value'] ?></a></span>
             </li>
             <li>
                 <strong>Telefonnummer</strong>
-                <span><?= $array_values[13]['value'] ?></span>
+                <span><?= $array_values[15]['value'] ?></span>
             </li>
             <li>
                 <strong>Straße/Hausnr.</strong>
-                <span><?= $array_values[9]['value'] ?></span>
-            </li>
-            <li>
-                <strong>Ort</strong>
                 <span><?= $array_values[11]['value'] ?></span>
             </li>
             <li>
-                <strong>PLZs</strong>
-                <span><?= $array_values[10]['value'] ?></span>
+                <strong>Ort</strong>
+                <span><?= $array_values[13]['value'] ?></span>
             </li>
-        </ul>
-    <?php
-        $html = ob_get_contents();
-    }
-    ob_end_clean();
+            <li>
+                <strong>PLZs</strong>
+                <span><?= $array_values[12]['value'] ?></span>
+            </li>
+            <?php
+				if (!empty($array_values[14]['value'])) {
+			?>
+            <li>
+            	<strong>Geburtsdatum</strong>
+            	<span><?= $array_values[16]['value'] ?></span>
+            </li>
+            <?php
+				/**
+				 * SEARCH ARRAY FOR ADITTIONAL PERSON DATA
+				 */
 
+
+
+			?>
+            <?php
+				} //endif
+				// allow personal information at hotel
+				echo '<li>';
+				switch ($array_values[count($array_values)-3]['value']){
+					case 0:
+						echo 'User allows Future to left personal information at hotel.';
+						break;
+					case 2:
+						echo 'User does not allow let Future to left personal information at hotel.';
+						break;
+				}
+				echo '</li>';
+				// room needed
+				echo '<li>';
+				switch ($array_values[count($array_values)-2]['value']){
+					case 0:
+						echo 'ab dem Vortag';
+						break;
+					case 1:
+						echo 'ab dem ersten Seminartag';
+						break;
+					case 2:
+						echo 'es wird kein Zimmer benötigt';
+						break;
+				}
+				echo '</li>';
+				// validate message
+				if (!empty($array_values[count($array_values)-1]['value'])) {
+			?>
+            <li>
+            	<strong>MEINE NACHRICHT AN DIE MITARBEITER VON FUTURE</strong>
+            	<p><?= $array_values[count($array_values)-1]['value'] ?></p>
+            </li>
+
+            <?php } echo count($array_values); ?>
+        </ul>
+	<?php
+	} // END Geschaftlich FORM
+
+	$html = ob_get_contents();
+    ob_end_clean();
+	echo $html;
+	die;
 
     /**
      * IF USER SUBMITED Geschäftlich FORM

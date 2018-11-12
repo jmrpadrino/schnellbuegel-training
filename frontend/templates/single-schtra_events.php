@@ -175,6 +175,10 @@
         background-repeat: no-repeat;
         background-position: right;
     }
+	.remove-guest{
+		color: white;
+		float: right;
+	}
 	@media only screen and (min-width: 320px) and (max-width: 480px){
 		h1, h2, h3, h4, h5, h6{
 			text-align: left;
@@ -534,13 +538,13 @@
                                             <h4>Hotelreservierung</h4>
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                    <label class="radio-inline"><input data-target="privat-room_needed" type="radio" name="anmeldung_privat[hotel-registration-data]" value="0"> Ich bin damit einverstanden, dass die FUTURE-Die Unternehmensentwickler GmbH meine Anmeldedaten zum Zweck der Hotelbuchung und -abrechnung an das angegebene Seminarhaus weitergibt. (Mit dem Hotel besteht eine Vereinbarung, dass die Daten nur für diese Zwecke und im Rahmen der DSGVO behandelt werden.)</label>
+                                                    <label class="radio-inline"><input data-target="privat-room_needed" type="radio" name="anmeldung_privat[hotel-registration-data][allowdatause]" value="0"> Ich bin damit einverstanden, dass die FUTURE-Die Unternehmensentwickler GmbH meine Anmeldedaten zum Zweck der Hotelbuchung und -abrechnung an das angegebene Seminarhaus weitergibt. (Mit dem Hotel besteht eine Vereinbarung, dass die Daten nur für diese Zwecke und im Rahmen der DSGVO behandelt werden.)</label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <label class="radio-inline">
-                                                        <input data-target="privat-room_needed" type="radio" name="anmeldung_privat[hotel-registration-data]" value="2"> Ich möchte nicht, dass die FUTURE-Die Unternehmensentwickler GmbH meine Daten an das Hotel weitergibt, ich führe die entsprechende Hotelreservierung selbst durch.
+                                                        <input data-target="privat-room_needed" type="radio" name="anmeldung_privat[hotel-registration-data][allowdatause]" value="2"> Ich möchte nicht, dass die FUTURE-Die Unternehmensentwickler GmbH meine Daten an das Hotel weitergibt, ich führe die entsprechende Hotelreservierung selbst durch.
                                                     </label>
                                                 </div>
                                             </div>
@@ -586,62 +590,65 @@
                             <div role="tabpanel" class="tab-pane" id="geschaftlich">
                                 <form id="anmeldung-geschaftlich" role="form" method="post">
                                     <input type="hidden" name="anmeldung" value="geschaftlich">
+                                    <input type="hidden" name="anmeldung_training_name" value="<?= $training_title ?>">
+                                    <input type="hidden" name="anmeldung_training_start" value="<?= $training_startdate ?>">
+                                    <input type="hidden" name="anmeldung_training_end" value="<?= $training_enddate ?>">
                                     <input type="hidden" name="anmeldung_geschaftlich[geschaftlich-date-or-application]" value="<?= date('d.m.Y')?>">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h4>Firma *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[vorname]">
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[firma]" >
                                         </div>
                                         <div class="col-sm-6">
                                             <h4>UID Nummer</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[nachname]">
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[uidnumber]" >
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h4>Anrede</h4>
                                             <label class="radio-inline">
-                                                <input type="radio" name="anmeldung_geschaftlich[anrede]" value="herr"> Herr
+                                                <input type="radio" name="anmeldung_geschaftlich[anrede]" value="herr" > Herr
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="anmeldung_geschaftlich[anrede]" value="frau"> Frau
+                                                <input type="radio" name="anmeldung_geschaftlich[anrede]" value="frau" > Frau
                                             </label>
                                         </div>
                                         <div class="col-sm-6">
                                             <h4>Titel</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[title]">
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[title]" >
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h4>Vorname *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[vorname]">
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[vorname]" >
                                         </div>
                                         <div class="col-sm-6">
                                             <h4>Nachname *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[nachname]">
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[nachname]" >
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <h4>Straße/Hausnr. *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[strabe]">
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[strabe]" >
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h4>PLZ *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[plz]">
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[plz]" >
                                         </div>
                                         <div class="col-sm-6">
                                             <h4>Ort *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[ort]">
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[ort]" >
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <h4>E-Mail *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[email]">
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[email]" >
                                         </div>
                                     </div>
                                     <div class="row">
@@ -658,71 +665,72 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <h3>Teilnehmer</h3>
+                                            <h4>Teilnehmer</h4>
                                             <div id="teilnehmer-list">
-                                                <div class="teilnehmer-form">
+                                              	<!-- clone this -->
+                                                <div class="teilnehmer-form" data-person="1">
                                                     <div class="row">
                                                         <div class="col-xs-12">
-                                                            <span class="teilnehmer-counter">1</span>. Teilnehmer
+                                                            <strong><span class="teilnehmer-counter">1</span>.</strong> Teilnehmer
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <h4>Anrede</h4>
                                                             <label class="radio-inline">
-                                                                <input type="radio" name="anmeldung_geschaftlich[anrede]" value="herr"> Herr
+                                                                <input type="radio" class="plusgest" name="anmeldung_geschaftlich_plusgest[1][anrede]" value="herr"> Herr
                                                             </label>
                                                             <label class="radio-inline">
-                                                                <input type="radio" name="anmeldung_geschaftlich[anrede]" value="frau"> Frau
+                                                                <input type="radio" class="plusgest" name="anmeldung_geschaftlich_plusgest[1][anrede]" value="frau"> Frau
                                                             </label>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <h4>Titel</h4>
-                                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[title]">
+                                                            <input class="form-control schnell-form-control-text plusgest" type="text" name="anmeldung_geschaftlich_plusgest[1][title]">
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <h4>Vorname *</h4>
-                                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[vorname]">
+                                                            <input class="form-control schnell-form-control-text plusgest" type="text" name="anmeldung_geschaftlich_plusgest[1][vorname]">
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <h4>Nachname *</h4>
-                                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[nachname]">
+                                                            <input class="form-control schnell-form-control-text plusgest" type="text" name="anmeldung_geschaftlich_plusgest[1][nachname]">
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <h4>Straße/Hausnr. *</h4>
-                                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[strabe]">
+                                                            <input class="form-control schnell-form-control-text plusgest" type="text" name="anmeldung_geschaftlich_plusgest[1][strabe]">
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <h4>PLZ *</h4>
-                                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[plz]">
+                                                            <input class="form-control schnell-form-control-text plusgest" type="text" name="anmeldung_geschaftlich_plusgest[1][plz]">
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <h4>Ort *</h4>
-                                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[ort]">
+                                                            <input class="form-control schnell-form-control-text plusgest" type="text" name="anmeldung_geschaftlich_plusgest[1][ort]">
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <h4>E-Mail *</h4>
-                                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[email]">
+                                                            <input class="form-control schnell-form-control-text plusgest" type="text" name="anmeldung_geschaftlich_plusgest[1][email]">
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <h4>Telefonnummer</h4>
-                                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[phone]">
+                                                            <input class="form-control schnell-form-control-text plusgest" type="text" name="anmeldung_geschaftlich_plusgest[1][phone]">
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <h4>Geburtsdatum (Optional für das Abschluss-Zertifikat)</h4>
-                                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[brith-date]">
+                                                            <input class="form-control schnell-form-control-text plusgest" type="text" name="anmeldung_geschaftlich_plusgest[1][brith-date]">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -826,12 +834,12 @@
                                             <h4>Konditionen *</h4>
                                             <div class="row">
                                                 <label class="radio-inline">
-                                                    <input type="checkbox" name="anmeldung_geschaftlich[cancelation-read]"> Ja, ich bestätige, dass ich die Stornobedingungen und die Allgemeinen Geschäftsbedingungen von FUTURE zur Kenntnis genommen habe.
+                                                    <input type="checkbox" name="anmeldung_geschaftlich[cancelation-read]" > Ja, ich bestätige, dass ich die Stornobedingungen und die Allgemeinen Geschäftsbedingungen von FUTURE zur Kenntnis genommen habe.
                                                 </label>
                                             </div>
                                             <div class="row">
                                                 <label class="radio-inline">
-                                                    <input type="checkbox" name="anmeldung_geschaftlich[accept-data-protection]"> Ja, ich akzeptiere die Datenschutzbestimmungen und stimme der Verarbeitung meiner personenbezogenen Daten zu.
+                                                    <input type="checkbox" name="anmeldung_geschaftlich[accept-data-protection]" > Ja, ich akzeptiere die Datenschutzbestimmungen und stimme der Verarbeitung meiner personenbezogenen Daten zu.
                                                 </label>
                                             </div>
                                         </div>
@@ -839,7 +847,7 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <p>Hinweis: Mit * gekennzeichnete Felder sind Pflichtfelder!</p>
-                                            <button class="buchung-submit-btn" type="submit" name="anmeldung_geschaftlich[submit]"><?= _e('Anmeldung absenden', 'schnel')?></button>
+                                            <button id="anmeldung-geschaftlich-btn" class="buchung-submit-btn" type="submit" name="anmeldung_geschaftlich[submit]"><?= _e('Anmeldung absenden', 'schnel')?></button>
                                         </div>
                                     </div>
                                 </form>
@@ -859,6 +867,7 @@
 			</div>
 		</div>
         <script>
+
             jQuery(document).ready( function(){
                 jQuery('.buchung-tab-list li a').click( function(){
                     var tab = jQuery(this);
@@ -881,19 +890,91 @@
                         jQuery('#' + radio.data('target')).val( radio.val() );
                     }
                 })
-                jQuery('#add-person').live( 'click', function(e){
-                    e.preventDefault();
-                    var maqueta = jQuery('.teilnehmer-form:last-child');
-                    maqueta = maqueta.clone()
-                    jQuery('#teilnehmer-list').append(maqueta);
-                    console.log(maqueta);
-                })
 
+/*
+campos = jQuery('.teilnehmer-form[data-person=1]')
+
+campos.find('input')
+
+jQuery.each( nombres, function( i, val){
+	console.log(jQuery(this).attr('name'))
+})
+
+jQuery.each( nombres, function( i, val){
+	var nombre = jQuery(this).attr('name').replace(/[1]/g, '2')
+
+	jQuery(this).attr('name', jQuery(this).attr('name').replace(/\1/g, '2'))
+	console.log(nombre)
+})
+*/
+
+
+				/*
+				 * ADD PERSON FORM TO LIST OF PERSONS
+				 */
+                jQuery('#add-person').live( 'click', function(e){
+                    e.preventDefault()
+
+					var randomColor = '#'+ ('000000' + Math.floor(Math.random()*16777215).toString(16)).slice(-6);
+
+                    var maqueta = jQuery('.teilnehmer-form:last-child')
+					var nextDataValue = maqueta.data('person') + 1
+
+                    maqueta = maqueta.clone()
+                    jQuery('#teilnehmer-list').append(maqueta)
+
+					var lastChild = jQuery('.teilnehmer-form:last-child')
+//					lastChild.css(
+//						'background-color', randomColor
+//					)
+
+					lastChild.attr('data-person', nextDataValue )
+
+					lastChild
+						.find('.teilnehmer-counter')
+						.text(nextDataValue)
+						.parent('div')
+						.find('.remove-guest')
+					    .remove()
+
+					lastChild
+						.find('.teilnehmer-counter')
+						.append(
+							'<button class="remove-guest et_pb_button" data-form="' +
+							nextDataValue +
+							'" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button>'
+						)
+
+                })
+				// REMOVE GUEST
+				jQuery('.remove-guest').live('click', function(e){
+
+					jQuery(this).parents('.teilnehmer-form').remove()
+
+					var teilnehmers = jQuery('.teilnehmer-counter');
+
+					jQuery.each( teilnehmers, function(index, value){
+						index = index + 1;
+						if (index > 1){
+							jQuery(this)
+								.parents('.teilnehmer-form')
+								.attr('data-person', index )
+							jQuery(this)
+								.text( index )
+								.append(
+									'<button class="remove-guest et_pb_button" data-form="' +
+									index +
+									'" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button>'
+								)
+						}
+					})
+				})
             })
         </script>
     </div>
 </div>
 <script>
+	/*
 	function initMap(){
 		// The location of Uluru
 		var germany = {lat: <?= $map_location[0] ?>, lng: <?= $map_location[1] ?>};
@@ -904,6 +985,7 @@
 				center: germany
 			});
 	}
+	*/
 </script>
 <?php if( $show_map == 1){ ?>
 <script async defer
