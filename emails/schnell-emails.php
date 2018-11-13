@@ -64,7 +64,7 @@ function schnell_send_event_form()
 				} //endif
 				// allow personal information at hotel
 				echo '<li>';
-				switch ($new_array['anmeldung_privat']['brith-date']){
+				switch ($new_array['anmeldung_privat']['hotel-registration-data']['allowdatause']){
 					case 0:
 						echo 'Der Nutzer verpflichtet sich, die Anmeldedaten an das angegebene Seminarhaus zum Zwecke der Hotelbuchung und -abrechnung weiterzugeben.';
 						break;
@@ -223,38 +223,54 @@ function schnell_send_event_form()
             <?php
 				// allow personal information at hotel
 				echo '<li>';
-				switch ($array_values[count($array_values)-3]['value']){
+				switch ($new_array['anmeldung_geschaftlich']['hotel-registration-data']['allowdatause']){
 					case 0:
-						echo 'User allows Future to left personal information at hotel.';
+						echo 'Der Nutzer verpflichtet sich, die Anmeldedaten an das angegebene Seminarhaus zum Zwecke der Hotelbuchung und -abrechnung weiterzugeben.';
 						break;
 					case 2:
-						echo 'User does not allow let Future to left personal information at hotel.';
+						echo 'Der Nutzer möchte nicht, dass die FUTURE-Die Unternehmensentwickler GmbH die Daten an das Hotel weitergibt, der Nutzer macht die Hotelbuchung selbst.';
 						break;
 				}
 				echo '</li>';
 				// room needed
 				echo '<li>';
-				switch ($array_values[count($array_values)-2]['value']){
+				echo '<strong>GERNE RESERVIEREN WIR FÜR SIE EIN ZIMMER:</strong>';
+				switch ($new_array['anmeldung_geschaftlich']['room_needed']){
 					case 0:
-						echo 'ab dem Vortag';
+						echo 'ab dem Vortag.';
 						break;
 					case 1:
-						echo 'ab dem ersten Seminartag';
+						echo 'ab dem ersten Seminartag.';
 						break;
 					case 2:
-						echo 'es wird kein Zimmer benötigt';
+						echo 'es wird kein Zimmer benötigt.';
 						break;
 				}
 				echo '</li>';
 				// validate message
-				if (!empty($array_values[count($array_values)-1]['value'])) {
+				if (!empty($new_array['anmeldung_geschaftlich']['room_needed'])) {
 			?>
             <li>
             	<strong>MEINE NACHRICHT AN DIE MITARBEITER VON FUTURE</strong>
-            	<p><?= $array_values[count($array_values)-1]['value'] ?></p>
+            	<p><?= $new_array['anmeldung_geschaftlich']['message_to_staff'] ?></p>
             </li>
-
             <?php } ?>
+            <?php
+                if ($new_array['anmeldung_geschaftlich']['dif-billing-address']['status'] == 'on'){
+                    echo '<div style="border: 1px solid gray; padding: 10px">';
+                    echo '<h2>Rechnungsinformationen</h2>';
+                    echo '<ul>';
+                    echo '<li><strong>Andere</strong> ' . $new_array['anmeldung_geschaftlich']['dif-billing-address']['andere'] . '</li>';
+                    echo '<li><strong>Title</strong> ' . $new_array['anmeldung_geschaftlich']['dif-billing-address']['title'] . '</li>';
+                    echo '<li><strong>Vorname</strong> ' . $new_array['anmeldung_geschaftlich']['dif-billing-address']['vorname'] . '</li>';
+                    echo '<li><strong>Nachname</strong> ' . $new_array['anmeldung_geschaftlich']['dif-billing-address']['nachname'] . '</li>';
+                    echo '<li><strong>Strabe</strong> ' . $new_array['anmeldung_geschaftlich']['dif-billing-address']['strabe'] . '</li>';
+                    echo '<li><strong>PLZ</strong> ' . $new_array['anmeldung_geschaftlich']['dif-billing-address']['plz'] . '</li>';
+                    echo '<li><strong>Ort</strong> ' . $new_array['anmeldung_geschaftlich']['dif-billing-address']['ort'] . '</li>';
+                    echo '</ul>';
+                    echo '</div>';
+                }
+            ?>
         </ul>
 	<?php
 	} // END Geschaftlich FORM

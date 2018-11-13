@@ -42,6 +42,7 @@ require_once 'backend/schnell-training-metaboxes-experts.php';
 require_once 'backend/schnell-training-metaboxes-locations.php';
 require_once 'backend/schnell-training-metaboxes-trainings.php';
 require_once 'backend/schnell-training-metaboxes-events.php';
+require_once 'backend/schnell-admin-functions.php';
 
 
 /* EMAIL */

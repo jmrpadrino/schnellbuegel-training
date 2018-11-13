@@ -95,8 +95,8 @@ formCompany.addEventListener('submit', function (e) {
                 submit_form
                     .find('i')
                     .remove();
-//                form_validated
-//                    .trigger('reset');
+                form_validated
+                    .trigger('reset');
                 console.log( response );
             },
             error      : function( response ){

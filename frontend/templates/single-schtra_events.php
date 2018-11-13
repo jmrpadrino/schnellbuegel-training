@@ -170,7 +170,7 @@
         color: #CE1719 !important;
     }
     #buchung select{
-        background-image: url(<?= SCHNELL_PLUGIN_URI ?>/frontend/images/select-chevron-down.jpg);
+        background-image: url(<?= SCHNELL_PLUGIN_URI ?>/frontend/images/select-chevron-down.png);
         background-size: auto 100%;
         background-repeat: no-repeat;
         background-position: right;
@@ -600,58 +600,58 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h4>Firma *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[firma]" >
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[firma]" required>
                                         </div>
                                         <div class="col-sm-6">
                                             <h4>UID Nummer</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[uidnumber]" >
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[uidnumber]" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h4>Anrede</h4>
                                             <label class="radio-inline">
-                                                <input type="radio" name="anmeldung_geschaftlich[anrede]" value="herr" > Herr
+                                                <input type="radio" name="anmeldung_geschaftlich[anrede]" value="herr" required> Herr
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="anmeldung_geschaftlich[anrede]" value="frau" > Frau
+                                                <input type="radio" name="anmeldung_geschaftlich[anrede]" value="frau" required> Frau
                                             </label>
                                         </div>
                                         <div class="col-sm-6">
                                             <h4>Titel</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[title]" >
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[title]" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h4>Vorname *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[vorname]" >
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[vorname]" required>
                                         </div>
                                         <div class="col-sm-6">
                                             <h4>Nachname *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[nachname]" >
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[nachname]" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <h4>Straße/Hausnr. *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[strabe]" >
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[strabe]" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h4>PLZ *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[plz]" >
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[plz]" required>
                                         </div>
                                         <div class="col-sm-6">
                                             <h4>Ort *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[ort]" >
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[ort]" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <h4>E-Mail *</h4>
-                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[email]" >
+                                            <input class="form-control schnell-form-control-text" type="text" name="anmeldung_geschaftlich[email]" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -805,14 +805,14 @@
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <label class="radio-inline">
-                                                        <input data-target="geschaftlich_room_needed" type="radio" name="anmeldung_geschaftlich[hotel-registration-data]" value="0"> Ich bin damit einverstanden, dass die FUTURE-Die Unternehmensentwickler GmbH meine Anmeldedaten zum Zweck der Hotelbuchung und -abrechnung an das angegebene Seminarhaus weitergibt. (Mit dem Hotel besteht eine Vereinbarung, dass die Daten nur für diese Zwecke und im Rahmen der DSGVO behandelt werden.)
+                                                        <input data-target="geschaftlich_room_needed" type="radio" name="anmeldung_geschaftlich[hotel-registration-data][allowdatause]" value="0"> Ich bin damit einverstanden, dass die FUTURE-Die Unternehmensentwickler GmbH meine Anmeldedaten zum Zweck der Hotelbuchung und -abrechnung an das angegebene Seminarhaus weitergibt. (Mit dem Hotel besteht eine Vereinbarung, dass die Daten nur für diese Zwecke und im Rahmen der DSGVO behandelt werden.)
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <label class="radio-inline">
-                                                        <input data-target="geschaftlich_room_needed" type="radio" name="anmeldung_geschaftlich[hotel-registration-data]" value="2"> Ich möchte nicht, dass die FUTURE-Die Unternehmensentwickler GmbH meine Daten an das Hotel weitergibt, ich führe die entsprechende Hotelreservierung selbst durch.
+                                                        <input data-target="geschaftlich_room_needed" type="radio" name="anmeldung_geschaftlich[hotel-registration-data][allowdatause]" value="2"> Ich möchte nicht, dass die FUTURE-Die Unternehmensentwickler GmbH meine Daten an das Hotel weitergibt, ich führe die entsprechende Hotelreservierung selbst durch.
                                                     </label>
                                                 </div>
                                             </div>
@@ -837,12 +837,12 @@
                                             <h4>Konditionen *</h4>
                                             <div class="row">
                                                 <label class="radio-inline">
-                                                    <input type="checkbox" name="anmeldung_geschaftlich[cancelation-read]" > Ja, ich bestätige, dass ich die Stornobedingungen und die Allgemeinen Geschäftsbedingungen von FUTURE zur Kenntnis genommen habe.
+                                                    <input type="checkbox" name="anmeldung_geschaftlich[cancelation-read]" required> Ja, ich bestätige, dass ich die Stornobedingungen und die Allgemeinen Geschäftsbedingungen von FUTURE zur Kenntnis genommen habe.
                                                 </label>
                                             </div>
                                             <div class="row">
                                                 <label class="radio-inline">
-                                                    <input type="checkbox" name="anmeldung_geschaftlich[accept-data-protection]" > Ja, ich akzeptiere die Datenschutzbestimmungen und stimme der Verarbeitung meiner personenbezogenen Daten zu.
+                                                    <input type="checkbox" name="anmeldung_geschaftlich[accept-data-protection]" required> Ja, ich akzeptiere die Datenschutzbestimmungen und stimme der Verarbeitung meiner personenbezogenen Daten zu.
                                                 </label>
                                             </div>
                                         </div>

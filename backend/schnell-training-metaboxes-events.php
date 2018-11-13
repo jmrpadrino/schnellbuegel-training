@@ -72,7 +72,7 @@ function schn_register_events_meta_boxes( $meta_boxes ) {
                 'id'    => $prefix . 'startdate',
                 'type'  => 'date',
                 'js_options' => array(
-                    'dateFormat'      => 'dd-mm-yy',
+                    'dateFormat'      => 'yy-mm-dd',
                     'showButtonPanel' => true,
                 ),
             ),
@@ -81,7 +81,7 @@ function schn_register_events_meta_boxes( $meta_boxes ) {
                 'id'    => $prefix . 'enddate',
                 'type'  => 'date',
                 'js_options' => array(
-                    'dateFormat'      => 'dd-mm-yy',
+                    'dateFormat'      => 'yy-mm-dd',
                     'showButtonPanel' => true,
                 ),
             ),
