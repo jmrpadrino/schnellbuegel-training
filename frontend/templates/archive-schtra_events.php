@@ -1,6 +1,6 @@
 <?php get_header(); $prefix = 'schnell_';?>
 <style>
-    body{font-family:'Nunito Sans',Helvetica,Arial,Lucida,sans-serif;font-size:.9rem;color:#666;font-weight:400;line-height:140%}.event-description .event-name,.event-headline,.event-location .place{font-weight:700}.event-description .event-name{font-size: 24px; line-height: 1.2; font-weight: 900; text-transform: uppercase}a{text-decoration:none}.event-description:nth-child(even){background-color:#fff}.event-description:nth-child(odd){background-color:#f8f8f8}.events-search{padding-bottom:15px}.events-search select{padding:5px 40px 5px 5px;margin-bottom:5px;border-radius:0;border-color:#a9a9a9}.events-search input[type=submit]{line-height:31px;margin-bottom:5px;color:#fff;display:inline-block;padding:0 15px;text-decoration:none;cursor:pointer;position:relative;width:auto;font-size:.9rem;border:0;background-color:#ce1719}.event-button .button:hover,.events-search .btn-search-events:hover{background-color:#fff;color:#ce1719;transition: all ease .3s;}.event-headline{background:#606060;color:#fff;font-size:1.2rem;padding:10px;text-align:center}.event-button,.event-detail,.event-time{padding:5px 0;}.event-time{color:#ce171a;width:25%;padding-left: 10px;}.event-detail a{color:#ce1719}.event-trainer{font-style:italic}.event-button .button{line-height:30px;line-height:1.667rem;font-size:.9rem;padding:10px 35px 10px 15px;display:inline-block;margin-bottom:5px;background-color:#ce1719;color:#fff}.event-location{font-size:.75rem}.events-content{max-width:1080px;margin:0 auto;padding:0}.event-description{display:flex;flex-direction:row;padding:5px 0; justify-content: space-between;}.event-detail{width:55%}.event-button{display:flex;flex-direction:column;min-width: 18%}
+    body{font-family:'Nunito Sans',Helvetica,Arial,Lucida,sans-serif;font-size:.9rem;color:#666;font-weight:400;line-height:140%}.event-description .event-name,.event-headline,.event-location .place{font-weight:700}.event-description .event-name{font-size: 24px; line-height: 1.2; font-weight: 900; text-transform: uppercase}a{text-decoration:none}.event-description:nth-child(even){background-color:#fff}.event-description:nth-child(odd){background-color:#f8f8f8}.events-search{padding-bottom:15px}.events-search select{padding:5px 40px 5px 5px;margin-bottom:5px;border-radius:0;border-color:#a9a9a9}.events-search input[type=submit]{line-height:31px;margin-bottom:5px;color:#fff;display:inline-block;padding:0 15px;text-decoration:none;cursor:pointer;position:relative;width:auto;font-size:.9rem;border:0;background-color:#ce1719}.event-button .button:hover,.events-search .btn-search-events:hover{background-color:#fff;color:#ce1719;transition: all ease .3s;}.event-headline{background:#606060;color:#fff;font-size:1.2rem;padding:10px;text-align:center}.event-button,.event-detail,.event-time{padding:5px 0;}.event-time{color:#ce171a;width:25%;padding-left: 10px;}.event-detail a{color:#ce1719}.event-trainer{font-style:italic}.event-button .button{line-height:30px;line-height:1.667rem;font-size:.9rem;padding:10px 35px 10px 15px;display:inline-block;margin-bottom:5px;background-color:#ce1719;color:#fff}.event-location{font-size:.75rem}.events-content{max-width:1080px;margin:0 auto;padding:0}.event-description{display:flex;flex-direction:row;padding:5px 0; justify-content: space-between;}.event-detail{width:55%}.event-button{display:flex;flex-direction:column;width: 18%; min-width: 180px;}
     .button.btn-search-events{
         font-size: .9rem;
         padding: 8px 15px;
@@ -135,6 +135,7 @@
                         $location_city          = get_post_meta( $location_ID, $prefix . 'city', true);
                                             
                         $split_date = explode('-',$training_startdate);
+                        $split_date2 = explode('-',$training_enddate);
 
                         if ( $month != $split_date[1] ){
                     ?>
@@ -145,7 +146,7 @@
                     <?php $month = $split_date[1]; ?>
                     <!-- objeto bucle posts -->
                     <div class="event-description">
-                        <div class="event-time"><i class="fa fa-calendar"></i> <?= str_replace('-', '.', $training_startdate) . ' - ' . str_replace('-', '.',  $training_enddate ) ?></div>
+                        <div class="event-time"><i class="fa fa-calendar"></i> <?=  $split_date[2] .'.'. $split_date[1] .'.'. $split_date[0] . ' - ' . $split_date2[2] .'.'. $split_date2[1] .'.'. $split_date2[0] ?></div>
                         <div class="event-detail">
                             <div class="event-name">
                                 <a href="<?= $training_permalink ?>"  ><?= $training_title ?></a>
@@ -169,7 +170,7 @@
                         </div>
                         <div class="event-button">
                             <?php if ( $training_pdf_file_url ) { ?>
-                            <a class="button btn-download"   href="<?= $training_pdf_file_url ?>">weitere Infos PDF <i class="fa fa-file-pdf-o"></i></a>
+                            <a class="button btn-download" target="_blank" href="<?= $training_pdf_file_url ?>">weitere Infos PDF <i class="fa fa-file-pdf-o"></i></a>
                             <?php } ?>
                             <a class="button btn-detail"   href="<?= the_permalink() ?>"><?= _e('Anmeldung','schnell') ?> <i class="fa fa-angle-double-right"></i></a>
                         </div>

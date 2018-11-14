@@ -16,7 +16,7 @@ function schnell_send_event_form()
 //	echo '<pre>';
 //	print_r($new_array);
 //	echo '</pre>';
-	//die;
+//	die;
     ob_start();
 
 	/**
@@ -25,6 +25,11 @@ function schnell_send_event_form()
 
     if ($new_array['anmeldung'] == 'privat'){
         $emailto = $new_array['anmeldung_privat']['email'];
+        $registeringuser = $new_array['anmeldung_privat']['title']
+            .' '
+            . $new_array['anmeldung_privat']['vorname']
+            .' '
+            . $new_array['anmeldung_privat']['nachname'];
     ?>
         <h1>Anmeldung - <?= $new_array['anmeldung'] ?></h1>
         <p><strong>Fur: </strong> <?= $new_array['anmeldung_training_name'] ?></p>
@@ -76,7 +81,7 @@ function schnell_send_event_form()
 				// room needed
 				echo '<li>';
 				echo '<strong>GERNE RESERVIEREN WIR FÜR SIE EIN ZIMMER:</strong>';
-				switch ($new_array['anmeldung_privat']['room_needed']){
+				switch ($new_array['anmeldung_privat']['hotel-registration-data']['room_needed']){
 					case 0:
 						echo 'ab dem Vortag.';
 						break;
@@ -89,11 +94,11 @@ function schnell_send_event_form()
 				}
 				echo '</li>';
 				// validate message
-				if (!empty($new_array['anmeldung_privat']['room_needed'])) {
+				if (!empty($new_array['anmeldung_privat']['hotel-registration-data']['message_to_staff'])) {
 			?>
             <li>
             	<strong>MEINE NACHRICHT AN DIE MITARBEITER VON FUTURE</strong>
-            	<p><?= $new_array['anmeldung_privat']['message_to_staff'] ?></p>
+            	<p><?= $new_array['anmeldung_privat']['hotel-registration-data']['message_to_staff'] ?></p>
             </li>
             <?php } ?>
         </ul>
@@ -122,6 +127,11 @@ function schnell_send_event_form()
 	if ($new_array['anmeldung'] == 'geschaftlich'){
 
         $emailto = $new_array['anmeldung_geschaftlich']['email'];
+        $registeringuser = $new_array['anmeldung_geschaftlich']['title']
+            .' '
+            . $new_array['anmeldung_geschaftlich']['vorname']
+            .' '
+            . $new_array['anmeldung_geschaftlich']['nachname'];
 	?>
 		<h1>Anmeldung - <?= $new_array['anmeldung'] ?></h1>
         <p><strong>Fur: </strong> <?= $new_array['anmeldung_training_name'] ?></p>
@@ -235,7 +245,7 @@ function schnell_send_event_form()
 				// room needed
 				echo '<li>';
 				echo '<strong>GERNE RESERVIEREN WIR FÜR SIE EIN ZIMMER:</strong>';
-				switch ($new_array['anmeldung_geschaftlich']['room_needed']){
+				switch ($new_array['anmeldung_geschaftlich']['hotel-registration-data']['room_needed']){
 					case 0:
 						echo 'ab dem Vortag.';
 						break;
@@ -248,11 +258,11 @@ function schnell_send_event_form()
 				}
 				echo '</li>';
 				// validate message
-				if (!empty($new_array['anmeldung_geschaftlich']['room_needed'])) {
+				if (!empty($new_array['anmeldung_geschaftlich']['hotel-registration-data']['message_to_staff'])) {
 			?>
             <li>
             	<strong>MEINE NACHRICHT AN DIE MITARBEITER VON FUTURE</strong>
-            	<p><?= $new_array['anmeldung_geschaftlich']['message_to_staff'] ?></p>
+            	<p><?= $new_array['anmeldung_geschaftlich']['hotel-registration-data']['message_to_staff'] ?></p>
             </li>
             <?php } ?>
             <?php
@@ -277,7 +287,7 @@ function schnell_send_event_form()
 
 	$html = ob_get_contents();
     ob_end_clean();
-	echo $html;
+	//echo $html;
 	//die;
 
     add_filter( 'wp_mail_content_type', 'schnell_set_html_mail_content_type' );
@@ -303,7 +313,20 @@ function schnell_send_event_form()
         'From: FUTURE-Die Unternehmensentwickler GmbH <info@future.at>' . "\r\n",
         'Reply-To: Anmeldungen <kontakt@future.at>' . "\r\n"
     );
-    $bodyUser = 'Du hast dich erfolgreich registriert.';
+
+
+    $bodyUser  = '<h1>Hallo ' . $registeringuser . '</h1>';
+    $bodyUser .= '<p>Sie haben sich für folgende Veranstaltung angemeldet: '
+        . $new_array['anmeldung_training_name']
+        . '. Dieser beginnt am: '
+        . date('d.m.Y', strtotime($new_array['anmeldung_training_start']))
+        . ' und endet am: '
+        . date('d.m.Y', strtotime($new_array['anmeldung_training_end']))
+        . '.</p>';
+    $bodyUser .= '<p>Wir überarbeiten Ihre Daten und schicken Ihnen so früh wie möglich eine Bestätigung.</p>';
+    $bodyUser .= '<p>Mit freundlichen Grüßen,</p>';
+    $bodyUser .= '<p>FUTURE – Die Unternehmensentwickler GmbH</p>';
+
     $mailtoUser = wp_mail($emailto, $subjectAlt, $bodyUser, $headersAlt);
 
     remove_filter( 'wp_mail_content_type', 'schnell_set_html_mail_content_type' );

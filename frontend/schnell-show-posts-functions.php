@@ -20,6 +20,11 @@ function schnell_set_order_on_archive( $query ){
         //        ( isset ( $_GET['training'] ) && !empty( $_GET['training'] ) ) ?
         //            $keyname = $prefix . 'training' : '';
 
+        $query->set( 'paged', true );
+        $query->set( 'posts_per_page', -1 );
+        $query->set( 'meta_key', $keyname);
+        $query->set( 'orderby', array ('meta_value' => 'ASC' ));
+
         if (
             isset ( $_GET['trainer'] ) &&
             !empty( $_GET['trainer'] )
@@ -72,11 +77,6 @@ function schnell_set_order_on_archive( $query ){
 
             $query->set('meta_query', $args );
         }
-
-        $query->set( 'paged', true );
-        $query->set( 'posts_per_page', -1 );
-        $query->set( 'meta_key', $keyname);
-        $query->set( 'orderby', array ('meta_value_num' => 'ASC' ));
 
     }
     

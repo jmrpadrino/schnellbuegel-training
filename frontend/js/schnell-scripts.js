@@ -50,6 +50,11 @@ formPrivat.addEventListener('submit', function (e) {
                     .find('i')
                     .remove();
                 form_validated
+                    .find('.sending-message')
+                    .addClass('success')
+                    .html('Erfolgreich angemeldet')
+                    .show()
+                form_validated
                     .trigger('reset');
                 console.log( response );
             },
@@ -59,6 +64,11 @@ formPrivat.addEventListener('submit', function (e) {
                     .removeClass('fa-circle-o-notch')
                     .removeClass('fa-spin')
                     .addClass('fa-exclamation-triangle');
+                form_validated
+                    .find('.sending-message')
+                    .addClass('error')
+                    .html('Nicht erfolgreich registriert')
+                    .show()
                 console.log( response );
             }
         })

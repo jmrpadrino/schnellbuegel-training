@@ -47,6 +47,11 @@ function schn_register_trainings_meta_boxes( $meta_boxes ) {
                 'rows'  => 5
             ),
             array(
+                'name'  => __('Anmerkungen Kosten', 'schnell'),
+                'id'    => $prefix . 'costcomment',
+                'type'  => 'textarea',
+            ),
+            array(
                 'name'  => __('Training PDF document', 'schnell'),
                 'id'    => $prefix . 'pdf',
                 'type'  => 'file_input',

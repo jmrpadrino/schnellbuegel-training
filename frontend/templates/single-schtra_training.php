@@ -19,6 +19,10 @@
             margin: 18px auto;
         }
     }
+    .container{
+        padding-right: 0;
+        padding-left: 0;
+    }
 </style>
 <div id="main-content">
     <div class="container">

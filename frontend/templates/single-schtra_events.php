@@ -182,6 +182,17 @@
 		color: white;
 		float: right;
 	}
+    .sending-message{
+        font-weight: bold;
+        text-transform: uppercase;
+        display: none;
+    }
+    .sending-message.success{
+        color: darkgreen;
+    }
+    .sending-message.error{
+        color: indianred;
+    }
 	@media only screen and (min-width: 320px) and (max-width: 480px){
 		h1, h2, h3, h4, h5, h6{
 			text-align: left;
@@ -205,6 +216,11 @@
     $training_pdf_file_url  = get_post_meta($training_ID, $prefix . 'pdf', true );
     $training_locations     = get_post_meta(get_the_id(), $prefix . 'mainlocation', true );
     $training_resume	    = get_post_meta(get_the_id(), $prefix . 'resume', true );
+    $training_price         = get_post_meta($training_ID, $prefix . 'cost', true );
+    $training_pricecomment  = get_post_meta($training_ID, $prefix . 'costcomment', true );
+
+    $split_date = explode('-',$training_startdate);
+    $split_date2 = explode('-',$training_enddate);
 ?>
 <div class="container single-event-container">
     <div class="row">
@@ -404,7 +420,7 @@
                     <!--h2><?= _e('Anmeldung für Neukunden','schnell')?></h2-->
                     <h2><?= _e('Anmeldung', 'schnell') ?>: <?= $training_title ?></h2>
 
-                    <p><?= _e('Vom', 'schnell') ?> <?= str_replace('-', '.', $training_startdate) ?>  <?= _e('Bis', 'schnell') ?> <?= str_replace('-', '.', $training_enddate) ?></p>
+                    <p><?= _e('Vom', 'schnell') ?> <?= $split_date[2] .'.'. $split_date[1].'.'.$split_date[0] ?>  <?= _e('Bis', 'schnell') ?> <?= $split_date2[2] .'.'. $split_date2[1].'.'.$split_date2[0] ?></p>
                     <div>
                         <!-- Nav tabs -->
                         <ul class="buchung-tab-list" role="tablist">
@@ -479,23 +495,10 @@
                                             <input class="form-control schnell-form-control-text" type="text" name="anmeldung_privat[brith-date]">
                                         </div>
                                     </div>
-                                    <!--div class="row">
-<div class="col-sm-12">
-<h4>Bitte wählen Sie Ihren gewünschten Starttermin</h4>
-<label class="radio-inline">
-<input type="radio" name="anmeldung_privat[anrede]" value="herr"> Präsenzmodul 1 - Einstieg und Ankommen in der Ausbildung 28.09.2018 - Fußenegger und Partner, 1090 Wien - Angelika Fußenegger
-</label>
-<label class="radio-inline">
-<input type="radio" name="anmeldung_privat[anrede]" value="frau"> Präsenzmodul 1 - Einstieg und Ankommen in der Ausbildung 08.11.2018 - Fußenegger und Partner, 1090 Wien - Angelika Fußenegger
-</label>
-</div>
-</div-->
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <h4>Kosten</h4>
-                                            <p>Die angegebenen Kosten sind exklusive der gesetzlichen MwSt.
-                                                Bitte beachten Sie: Unterkunft und Verpflegung sind im Preis nicht inkludiert und direkt mit dem Hotel abzurechnen.
-                                                Die Rechnung erhalten Sie rechtzeitig vor Beginn der Veranstaltung.</p>
+                                            <h4>Kosten: &euro; <?= $training_price ?></h4>
+                                            <p><?= $training_pricecomment ?></p>
                                             <div class="row">
                                                 <label class="radio-inline">
                                                     <input data-target="privat-dif-billing-address" type="checkbox" name="anmeldung_privat[dif-billing-address][status]"> Abweichende Rechnungsadresse
@@ -586,6 +589,7 @@
                                         <div class="col-sm-12">
                                             <p>Hinweis: Mit * gekennzeichnete Felder sind Pflichtfelder!</p>
                                             <button id="anmeldung-privat-btn" class="buchung-submit-btn" type="submit" name="anmeldung_privat[submit]"><?= _e('Anmeldung absenden', 'schnel')?></button>
+                                            <div class="sending-message"></div>
                                         </div>
                                     </div>
                                 </form>
@@ -747,10 +751,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <h4>Kosten</h4>
-                                            <p>Die angegebenen Kosten sind exklusive der gesetzlichen MwSt.
-                                                Bitte beachten Sie: Unterkunft und Verpflegung sind im Preis nicht inkludiert und direkt mit dem Hotel abzurechnen.
-                                                Die Rechnung erhalten Sie rechtzeitig vor Beginn der Veranstaltung.</p>
+                                            <h4>Kosten: &euro; <?= $training_price ?></h4>
+                                            <p><?= $training_pricecomment ?></p>
                                             <div class="row">
                                                 <label class="radio-inline">
                                                     <input data-target="geschaftlich-dif-billing-address" type="checkbox" name="anmeldung_geschaftlich[dif-billing-address][status]"> Abweichende Rechnungsadresse
@@ -851,6 +853,7 @@
                                         <div class="col-sm-12">
                                             <p>Hinweis: Mit * gekennzeichnete Felder sind Pflichtfelder!</p>
                                             <button id="anmeldung-geschaftlich-btn" class="buchung-submit-btn" type="submit" name="anmeldung_geschaftlich[submit]"><?= _e('Anmeldung absenden', 'schnel')?></button>
+                                            <div class="sending-message"></div>
                                         </div>
                                     </div>
                                 </form>
